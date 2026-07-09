@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Architecture at a Glance</title>
+  <desc id="desc">A bold AppSec lab thumbnail showing Terraform, Azure, the app routes, CI security checks, and reporting artifacts flowing left to right.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#08111f"/>
+      <stop offset="55%" stop-color="#101d35"/>
+      <stop offset="100%" stop-color="#1a0f2e"/>
+    </linearGradient>
+    <radialGradient id="glowBlue" cx="25%" cy="18%" r="60%">
+      <stop offset="0%" stop-color="#46d9ff" stop-opacity="0.32"/>
+      <stop offset="100%" stop-color="#46d9ff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowPink" cx="82%" cy="22%" r="55%">
+      <stop offset="0%" stop-color="#ff5da8" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#ff5da8" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#14243f" stop-opacity="0.96"/>
+      <stop offset="100%" stop-color="#0f1a2d" stop-opacity="0.96"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#66e3ff"/>
+      <stop offset="50%" stop-color="#7c8dff"/>
+      <stop offset="100%" stop-color="#ff6aa9"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#000000" flood-opacity="0.45"/>
+    </filter>
+    <filter id="softShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+    <style>
+      .label { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #f7fbff; }
+      .small { font-size: 22px; letter-spacing: 0.8px; text-transform: uppercase; fill: #b8c5df; }
+      .title { font-size: 68px; font-weight: 800; letter-spacing: -1px; }
+      .subtitle { font-size: 28px; fill: #c7d6ef; }
+      .cardTitle { font-size: 30px; font-weight: 800; }
+      .cardText { font-size: 22px; fill: #d7e2f5; }
+      .micro { font-size: 18px; fill: #a8b8d6; }
+      .pill { font-size: 17px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; fill: #08111f; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#glowBlue)"/>
+  <rect width="1600" height="900" fill="url(#glowPink)"/>
+
+  <g opacity="0.18">
+    <path d="M110 130 H1490" stroke="#7ee7ff" stroke-width="2"/>
+    <path d="M110 210 H1490" stroke="#7ee7ff" stroke-width="2"/>
+    <path d="M110 290 H1490" stroke="#7ee7ff" stroke-width="2"/>
+    <path d="M110 370 H1490" stroke="#7ee7ff" stroke-width="2"/>
+    <path d="M110 450 H1490" stroke="#7ee7ff" stroke-width="2"/>
+    <path d="M110 530 H1490" stroke="#7ee7ff" stroke-width="2"/>
+    <path d="M110 610 H1490" stroke="#7ee7ff" stroke-width="2"/>
+    <path d="M110 690 H1490" stroke="#7ee7ff" stroke-width="2"/>
+  </g>
+
+  <g filter="url(#softShadow)">
+    <rect x="78" y="34" rx="28" ry="28" width="392" height="150" fill="rgba(9,16,30,0.78)" stroke="rgba(255,255,255,0.08)"/>
+    <rect x="100" y="60" rx="999" ry="999" width="150" height="34" fill="url(#accent)"/>
+    <text class="label pill" x="118" y="84">AppSec Lab</text>
+    <text class="label title" x="100" y="140">Architecture</text>
+  </g>
+
+  <g filter="url(#softShadow)">
+    <rect x="980" y="86" rx="24" ry="24" width="386" height="120" fill="rgba(9,16,30,0.72)" stroke="rgba(255,255,255,0.08)"/>
+    <rect x="1006" y="108" rx="14" ry="14" width="124" height="38" fill="rgba(102,227,255,0.16)"/>
+    <text class="label pill" x="1026" y="134">Flow</text>
+    <text class="label subtitle" x="1008" y="172">Terraform, Azure, app routes,</text>
+    <text class="label subtitle" x="1008" y="200">security scans, and evidence</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="92" y="316" rx="28" ry="28" width="262" height="250" fill="url(#card)" stroke="rgba(102,227,255,0.26)"/>
+    <rect x="118" y="342" rx="14" ry="14" width="104" height="40" fill="rgba(102,227,255,0.14)"/>
+    <text class="label pill" x="142" y="369">IaC</text>
+    <text class="label cardTitle" x="118" y="432">Terraform</text>
+    <text class="label cardText" x="118" y="474">infra/ root module</text>
+    <text class="label cardText" x="118" y="511">RG, App Service Plan,</text>
+    <text class="label cardText" x="118" y="544">Linux Web App</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="438" y="274" rx="28" ry="28" width="318" height="334" fill="url(#card)" stroke="rgba(124,141,255,0.26)"/>
+    <rect x="464" y="300" rx="14" ry="14" width="112" height="40" fill="rgba(124,141,255,0.14)"/>
+    <text class="label pill" x="488" y="327">App</text>
+    <text class="label cardTitle" x="464" y="390">Express routes</text>
+    <text class="label cardText" x="464" y="436">/</text>
+    <text class="label cardText" x="464" y="471">/health</text>
+    <text class="label cardText" x="464" y="506">/profile?id=1</text>
+    <text class="label cardText" x="464" y="541">/search?q=test</text>
+    <text class="label cardText" x="464" y="576">/debug • /headers • /orders</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="868" y="274" rx="28" ry="28" width="318" height="330" fill="url(#card)" stroke="rgba(255,106,169,0.26)"/>
+    <rect x="894" y="300" rx="14" ry="14" width="182" height="40" fill="rgba(255,106,169,0.14)"/>
+    <text class="label pill" x="918" y="327">CI / Security</text>
+    <text class="label cardTitle" x="894" y="390">GitHub Actions</text>
+    <text class="label cardText" x="894" y="436">Deploy workflow</text>
+    <text class="label cardText" x="894" y="471">CodeQL</text>
+    <text class="label cardText" x="894" y="506">ZAP Baseline</text>
+    <text class="label cardText" x="894" y="541">Gitleaks</text>
+    <text class="label cardText" x="894" y="576">Dependabot</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="1280" y="316" rx="28" ry="28" width="242" height="262" fill="url(#card)" stroke="rgba(118,255,196,0.24)"/>
+    <rect x="1306" y="342" rx="14" ry="14" width="132" height="40" fill="rgba(118,255,196,0.14)"/>
+    <text class="label pill" x="1330" y="369">Evidence</text>
+    <text class="label cardTitle" x="1306" y="431">Reports</text>
+    <text class="label cardText" x="1306" y="478">appsec-findings</text>
+    <text class="label cardText" x="1306" y="514">OWASP mapping</text>
+    <text class="label cardText" x="1306" y="550">Remediation plan</text>
+  </g>
+
+  <g stroke="url(#accent)" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#softShadow)">
+    <path d="M352 441 C392 441, 402 441, 438 441"/>
+    <path d="M756 441 C810 441, 826 441, 868 441"/>
+    <path d="M1186 441 C1232 441, 1244 441, 1280 441"/>
+  </g>
+
+  <g fill="url(#accent)">
+    <path d="M421 441 l-18 -10 v20 z"/>
+    <path d="M851 441 l-18 -10 v20 z"/>
+    <path d="M1261 441 l-18 -10 v20 z"/>
+  </g>
+
+  <g opacity="0.9">
+    <circle cx="348" cy="441" r="10" fill="#66e3ff"/>
+    <circle cx="754" cy="441" r="10" fill="#7c8dff"/>
+    <circle cx="1187" cy="441" r="10" fill="#ff6aa9"/>
+  </g>
+
+  
+</svg>
