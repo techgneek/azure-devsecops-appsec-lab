@@ -293,6 +293,18 @@ Two findings were remediated end-to-end with before/after evidence and validatio
 | AF-001 Missing Security Headers | `/headers` reported missing baseline headers | `/headers` returns hardened header set and empty missing list | `reports/appsec-findings-report.md`, `reports/remediation-rounds.md` |
 | AF-004 Excessive API Data Exposure | `/api/orders/1001` exposed `internalNotes` and `paymentTokenLast4` | `/api/orders/1001` returns only required order fields | `reports/appsec-findings-report.md`, `reports/remediation-rounds.md` |
 
+### AF-001 Security Headers Before/After
+
+| Before | After |
+| --- | --- |
+| ![Before security headers remediation](screenshots/before-security-headers.png) | ![After security headers remediation](screenshots/after-security-headers.png) |
+
+### AF-004 API Data Exposure Before/After
+
+| Before | After |
+| --- | --- |
+| ![Before API data exposure remediation](screenshots/before-api-data-exposure.png) | ![After API data exposure remediation](screenshots/after-api-data-exposure.png) |
+
 Validation commands used:
 
 ```bash
@@ -359,14 +371,14 @@ This is an intentionally vulnerable personal training environment. Do not scan o
 
 ## Screenshot Drop Checklist
 
-If you want the README to display the final before/after remediation images, place these files in `screenshots/`:
+The final before/after remediation images are now included from `screenshots/`:
 
 - `before-security-headers.png`
 - `after-security-headers.png`
 - `before-api-data-exposure.png`
 - `after-api-data-exposure.png`
 
-Once present, they can be embedded directly into this README as final proof artifacts.
+These image paths are the canonical names used by the proof gallery above.
 
 ## What I Would Improve Next
 
