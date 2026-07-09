@@ -30,7 +30,7 @@ SCA checks third-party dependencies for known vulnerabilities. It helps catch ri
 
 ## 8. How I would explain secrets scanning
 
-Secrets scanning looks for passwords, API keys, tokens, and other sensitive values that should never be committed to source control. It is important because even a short hardcoded secret can become a real incident if it is real and reachable.
+Secrets scanning looks for passwords, API keys, tokens, and other sensitive values that should never be committed to source control. It is important because even a short hardcoded secret can become a real incident if it is real and reachable. In the lab, I also show the remediation step: remove the value, replace it with a non-secret placeholder, rotate anything that was real, and re-run the scan to verify closure.
 
 ## 9. How I would explain OWASP Top 10
 

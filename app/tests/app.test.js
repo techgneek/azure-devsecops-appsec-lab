@@ -28,12 +28,12 @@ test('GET /search?q=test returns simulated query output', async () => {
   assert.match(response.body.simulatedQuery, /SELECT \* FROM inventory/);
 });
 
-test('GET /debug returns the fake training secret', async () => {
+test('GET /debug returns the training placeholder', async () => {
   const app = createApp();
   const response = await request(app).get('/debug');
 
   assert.equal(response.statusCode, 200);
-  assert.match(response.body.fakeSecret, /FAKE-LAB-SECRET/);
+  assert.equal(response.body.fakeSecret, 'REDACTED_FOR_TRAINING');
 });
 
 test('GET /api/orders/1001 returns over-shared order data', async () => {

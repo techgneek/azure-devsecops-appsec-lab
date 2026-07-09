@@ -31,3 +31,4 @@ This plan prioritizes findings the way a vulnerability management analyst would 
 4. Prioritize by data sensitivity and exploitability.
 5. Assign to the owning developer or platform team.
 6. Re-scan or re-test after the fix.
+7. For secret findings, remove the hardcoded value, replace it with a placeholder, and rotate any real secret before re-scanning.

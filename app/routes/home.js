@@ -13,6 +13,9 @@ router.get('/', (req, res) => {
         <style>
           body { font-family: Arial, sans-serif; margin: 2rem; line-height: 1.5; }
           code { background: #f3f3f3; padding: 0.1rem 0.3rem; border-radius: 4px; }
+          a { color: #0b5cad; text-decoration: none; }
+          a:hover { text-decoration: underline; }
+          ul { padding-left: 1.5rem; }
         </style>
       </head>
       <body>
@@ -20,12 +23,12 @@ router.get('/', (req, res) => {
         <p>This app is intentionally vulnerable for interview prep and AppSec practice only.</p>
         <p>It demonstrates broken access control, unsafe input handling, debug exposure, excessive data exposure, missing security headers, and secrets scanning signals.</p>
         <ul>
-          <li><code>/health</code></li>
-          <li><code>/profile?id=1</code></li>
-          <li><code>/search?q=test</code></li>
-          <li><code>/debug</code></li>
-          <li><code>/api/orders/:id</code></li>
-          <li><code>/headers</code></li>
+          <li><a href="/health"><code>/health</code></a></li>
+          <li><a href="/profile?id=1"><code>/profile?id=1</code></a></li>
+          <li><a href="/search?q=test"><code>/search?q=test</code></a></li>
+          <li><a href="/debug"><code>/debug</code></a></li>
+          <li><a href="/api/orders/1001"><code>/api/orders/1001</code></a></li>
+          <li><a href="/headers"><code>/headers</code></a></li>
         </ul>
       </body>
     </html>

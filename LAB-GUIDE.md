@@ -66,6 +66,7 @@ Dependabot monitors the npm package file and GitHub Actions dependencies for SCA
 ## 10. Run Secrets Scan
 
 Use `secrets-scan.yml` to detect the fake hardcoded secret and any other accidental secret patterns.
+If Gitleaks finds a secret pattern, remove the value from code, replace it with a non-secret placeholder, rotate the value if it was ever real, and re-run the scan to confirm the fix.
 
 ## 11. Run OWASP ZAP Baseline Scan
 
@@ -78,10 +79,13 @@ Read the documents in `reports/` to practice triage, OWASP mapping, and remediat
 ## 13. Remediate One Issue
 
 Pick one finding, fix it, and document the owner and validation method.
+For the secret-scan exercise, show the full remediation loop: remove the hardcoded secret, commit the change, and note the re-scan result.
 
 ## 14. Re-Run Scan And Validate
 
 Run the relevant scan again and confirm the issue is closed.
+For secrets, the closure evidence should be a clean Gitleaks pass with no remaining hardcoded secret pattern.
+In this lab, the successful closure run is `Secrets Scan` run `28994165739`.
 
 ## 15. Destroy Azure Resources
 
