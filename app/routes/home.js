@@ -20,7 +20,7 @@ router.get('/', (req, res) => {
       </head>
       <body>
         <h1>Azure DevSecOps AppSec Vulnerability Management Lab</h1>
-        <p>This app is intentionally vulnerable for interview prep and AppSec practice only.</p>
+        <p>This app is intentionally vulnerable for AppSec practice only.</p>
         <p>It demonstrates broken access control, unsafe input handling, debug exposure, excessive data exposure, missing security headers, and secrets scanning signals.</p>
         <ul>
           <li><a href="/health"><code>/health</code></a></li>
