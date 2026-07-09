@@ -1,0 +1,48 @@
+# [AF-004] Minimize Order API Response Data
+
+- Finding ID: AF-004
+- Title: Excessive data exposure in `/api/orders/:id`
+- Suggested owner: API Owner
+- Priority: P1
+- Status: Open
+
+## Summary
+
+The orders API currently returns fields intended for internal use (for example internal notes and token-like fragments) that are not required by the client.
+
+## Affected Route
+
+- `GET /api/orders/:id`
+
+## OWASP Mapping
+
+- OWASP A01: Broken Access Control (data exposure impact)
+- Related AppSec concept: Excessive data exposure / response over-sharing
+
+## Risk
+
+Over-shared API responses increase the blast radius of unauthorized access and can leak sensitive or internal operational data.
+
+## Evidence
+
+- Route behavior documented in `app/routes/orders.js`
+- Finding tracked in `reports/appsec-findings-report.md` (AF-004)
+
+## Recommended Fix
+
+1. Return only fields required by the consumer.
+2. Remove internal notes and token fragment fields from public payloads.
+3. Add response schema tests to prevent future over-sharing.
+
+## Validation Steps
+
+1. Call `/api/orders/1` before fix and capture over-shared payload.
+2. Apply response minimization fix.
+3. Call `/api/orders/1` after fix and confirm only required fields remain.
+4. Update report status with before/after evidence.
+
+## Definition Of Done
+
+- Public response no longer exposes internal fields.
+- API tests confirm minimized response shape.
+- Finding AF-004 marked remediated with validation evidence.

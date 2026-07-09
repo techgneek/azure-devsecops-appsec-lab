@@ -216,6 +216,16 @@ Each finding is documented with:
 
 This is the same discipline used in vulnerability management: a finding is not useful unless it has evidence, risk context, ownership, and a closure method.
 
+## Finding Ownership Simulation (GitHub Issues Style)
+
+To model real remediation handoff, this repository includes issue-style developer tickets in `issues/`:
+
+- `issues/AF-001-security-headers.md`
+- `issues/AF-003-object-level-authorization.md`
+- `issues/AF-004-excessive-api-data-exposure.md`
+
+Each issue includes summary, route scope, OWASP mapping, risk, recommended fix, owner, validation steps, and definition of done. This shows how an AppSec finding becomes actionable engineering work instead of a static report entry.
+
 ---
 
 ## Step 7: Map Findings to OWASP Top 10
