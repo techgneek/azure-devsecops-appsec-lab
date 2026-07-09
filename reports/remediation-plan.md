@@ -8,7 +8,7 @@ This plan prioritizes findings the way a vulnerability management analyst would 
 | P1 | AF-003 | Broken access control is high impact because it can expose user data directly | App developer / API owner | Re-test with multiple IDs and verify access control blocks unauthorized requests |
 | P1 | AF-004 | Excessive data exposure may leak customer and internal data in one response | API owner | Confirm the API response only includes necessary fields |
 | P1 | AF-005 | Even a fake secret is a real-pattern training signal and a reminder to remove secrets from code | Developer | Run secrets scanning again and confirm the pattern no longer appears |
-| P2 | AF-001 | Missing headers are usually lower risk than data exposure but still weaken the app baseline | App developer | Verify hardening headers are present after middleware changes |
+| P2 | AF-001 | Missing headers are usually lower risk than data exposure but still weaken the app baseline | App developer | Verify `/headers` returns baseline headers and empty missing header list after middleware changes |
 | P2 | AF-006 | Dependency issues are important, but the actual risk depends on whether the vulnerable package is reachable | App developer / build owner | Re-run dependency scanning and confirm alert closure after the upgrade |
 | P3 | AF-007 | Unsafe input handling is important, but in this lab it is deliberately simulated and does not hit a real backend | App developer | Validate that user input is normalized or parameterized |
 

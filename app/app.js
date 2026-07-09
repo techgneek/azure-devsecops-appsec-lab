@@ -1,4 +1,5 @@
 const express = require('express');
+const helmet = require('helmet');
 
 const homeRoute = require('./routes/home');
 const healthRoute = require('./routes/health');
@@ -14,6 +15,27 @@ function createApp() {
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
   app.use(express.static('public'));
+
+  app.use(
+    helmet({
+      // Keep a practical baseline that is easy to explain in the lab.
+      contentSecurityPolicy: {
+        directives: {
+          defaultSrc: ["'self'"],
+          objectSrc: ["'none'"],
+          baseUri: ["'self'"],
+          frameAncestors: ["'none'"],
+        },
+      },
+      referrerPolicy: { policy: 'no-referrer' },
+    })
+  );
+
+  // Helmet does not set Permissions-Policy by default in this configuration.
+  app.use((req, res, next) => {
+    res.setHeader('Permissions-Policy', 'geolocation=(), camera=(), microphone=()');
+    next();
+  });
 
   app.use('/', homeRoute);
   app.use('/health', healthRoute);

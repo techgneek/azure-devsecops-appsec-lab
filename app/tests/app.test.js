@@ -45,10 +45,16 @@ test('GET /api/orders/1001 returns over-shared order data', async () => {
   assert.ok(response.body.order.internalNotes);
 });
 
-test('GET /headers exposes current request headers and missing header list', async () => {
+test('GET /headers reports a hardened security header baseline', async () => {
   const app = createApp();
   const response = await request(app).get('/headers');
 
   assert.equal(response.statusCode, 200);
   assert.ok(Array.isArray(response.body.missingSecurityHeaders));
+  assert.equal(response.body.missingSecurityHeaders.length, 0);
+  assert.equal(response.body.responseSecurityHeaders['x-frame-options'], 'SAMEORIGIN');
+  assert.equal(response.body.responseSecurityHeaders['x-content-type-options'], 'nosniff');
+  assert.equal(response.body.responseSecurityHeaders['referrer-policy'], 'no-referrer');
+  assert.match(response.body.responseSecurityHeaders['content-security-policy'], /default-src 'self'/);
+  assert.match(response.body.responseSecurityHeaders['permissions-policy'], /geolocation=\(\)/);
 });

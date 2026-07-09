@@ -11,15 +11,24 @@ const recommendedHeaders = [
 ];
 
 router.get('/', (req, res) => {
-  const currentHeaders = req.headers;
-  const missingHeaders = recommendedHeaders.filter((header) => !Object.prototype.hasOwnProperty.call(req.headers, header));
+  const responseHeaders = res.getHeaders();
+  const missingHeaders = recommendedHeaders.filter(
+    (header) => !Object.prototype.hasOwnProperty.call(responseHeaders, header)
+  );
 
-  // Training note: this route shows the lack of common hardening headers.
-  // Remediation example: add a hardened middleware layer such as helmet and tune the header policy.
+  // Post-remediation note: this route now reports response header hardening status.
   res.json({
-    currentHeaders,
+    responseSecurityHeaders: {
+      'content-security-policy': responseHeaders['content-security-policy'] || null,
+      'x-frame-options': responseHeaders['x-frame-options'] || null,
+      'x-content-type-options': responseHeaders['x-content-type-options'] || null,
+      'referrer-policy': responseHeaders['referrer-policy'] || null,
+      'permissions-policy': responseHeaders['permissions-policy'] || null,
+    },
     missingSecurityHeaders: missingHeaders,
-    note: 'This route intentionally demonstrates missing security headers.',
+    note: missingHeaders.length === 0
+      ? 'Security header baseline is present.'
+      : 'Security header baseline is partially missing.',
   });
 });
 
