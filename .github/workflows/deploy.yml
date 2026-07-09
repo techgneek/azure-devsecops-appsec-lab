@@ -48,14 +48,12 @@ jobs:
           zip -r ../app.zip . -x "node_modules/*"
 
       - name: Deploy to Azure App Service
-        run: |
-          az webapp deploy \
-            --resource-group "${{ secrets.AZURE_RESOURCE_GROUP }}" \
-            --name "${{ secrets.AZURE_WEBAPP_NAME }}" \
-            --src-path app.zip \
-            --type zip
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: ${{ vars.AZURE_WEBAPP_NAME }}
+          package: app.zip
 
       - name: Show deployment target
         run: |
-          echo "Resource group: ${{ secrets.AZURE_RESOURCE_GROUP }}"
-          echo "Web app: ${{ secrets.AZURE_WEBAPP_NAME }}"
+          echo "Resource group: ${{ vars.AZURE_RESOURCE_GROUP }}"
+          echo "Web app: ${{ vars.AZURE_WEBAPP_NAME }}"
