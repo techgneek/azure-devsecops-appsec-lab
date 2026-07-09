@@ -81,4 +81,4 @@ Use this framing when you talk about the lab:
 
 You can also say:
 
-"I am not claiming to be a senior AppSec engineer yet. I am showing that I understand the workflow, the tools, the risk language, and how to work with developers to drive remediation."
+
