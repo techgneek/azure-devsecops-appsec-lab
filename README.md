@@ -77,7 +77,7 @@ This is an intentionally vulnerable personal lab only. Do not scan or attack thi
 
 Use this framing when you talk about the lab:
 
-"This lab demonstrates how I translated my enterprise vulnerability management experience into AppSec and DevSecOps. The core lifecycle is the same: identify the weakness, validate the finding, prioritize based on exposure and business risk, coordinate remediation with the owning team, and confirm closure through re-testing."
+"This lab demonstrates how I translated my enterprise vulnerability management experience into AppSec and DevSecOps. The core lifecycle is the same: identify the weakness, validate the finding, prioritize based on exposure and business risk, coordinate remediation with the owning team, and confirm closure through 
 
 
 
