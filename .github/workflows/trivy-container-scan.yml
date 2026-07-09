@@ -18,15 +18,18 @@ jobs:
         run: docker build -t azure-devsecops-appsec-lab:ci ./app
 
       - name: Run Trivy image scan (table output)
-        uses: aquasecurity/trivy-action@0.24.0
-        with:
-          image-ref: azure-devsecops-appsec-lab:ci
-          format: table
-          output: trivy-image-report.txt
-          severity: CRITICAL,HIGH,MEDIUM,LOW
-          vuln-type: os,library
-          ignore-unfixed: true
-          exit-code: "0"
+        run: |
+          docker run --rm \
+            -v /var/run/docker.sock:/var/run/docker.sock \
+            -v "${{ github.workspace }}:/work" \
+            ghcr.io/aquasecurity/trivy:latest image \
+            --format table \
+            --output /work/trivy-image-report.txt \
+            --severity CRITICAL,HIGH,MEDIUM,LOW \
+            --vuln-type os,library \
+            --ignore-unfixed \
+            --exit-code 0 \
+            azure-devsecops-appsec-lab:ci
 
       - name: Print Trivy report in logs
         run: cat trivy-image-report.txt
