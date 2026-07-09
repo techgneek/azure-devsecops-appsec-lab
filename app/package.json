@@ -17,7 +17,7 @@
   "author": "",
   "license": "UNLICENSED",
   "dependencies": {
-    "express": "^4.19.2"
+    "express": "^5.2.1"
   },
   "devDependencies": {
     "supertest": "^7.1.4"
