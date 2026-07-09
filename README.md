@@ -159,7 +159,7 @@ The app contains routes that demonstrate common application security concerns in
 
 | Route | Screenshot | AppSec Concept |
 | --- | --- | --- |
-| `/` | ![Home page route list](screenshots/home-route.png) | Lab landing page and route map |
+| `/` | ![Home page route list](screenshots/screenshots%3Ahome-route.png) | Lab landing page and route map |
 | `/profile?id=1` | ![Profile endpoint response](screenshots/profile-route.png) | Broken access control / IDOR-style behavior |
 | `/debug` | ![Debug endpoint response](screenshots/debug-route.png) | Debug exposure and secret-handling risk |
 | `/api/orders/:id` | ![Orders API response](screenshots/orders-route.png) | Excessive data exposure in API responses |
