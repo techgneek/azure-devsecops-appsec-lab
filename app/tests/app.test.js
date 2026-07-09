@@ -36,13 +36,17 @@ test('GET /debug returns the training placeholder', async () => {
   assert.equal(response.body.fakeSecret, 'REDACTED_FOR_TRAINING');
 });
 
-test('GET /api/orders/1001 returns over-shared order data', async () => {
+test('GET /api/orders/1001 returns minimized order data', async () => {
   const app = createApp();
   const response = await request(app).get('/api/orders/1001');
 
   assert.equal(response.statusCode, 200);
   assert.equal(response.body.order.id, '1001');
-  assert.ok(response.body.order.internalNotes);
+  assert.equal(response.body.order.customerName, 'Sample Customer');
+  assert.equal(response.body.order.total, 149.99);
+  assert.ok(Array.isArray(response.body.order.items));
+  assert.equal(response.body.order.internalNotes, undefined);
+  assert.equal(response.body.order.paymentTokenLast4, undefined);
 });
 
 test('GET /headers reports a hardened security header baseline', async () => {

@@ -28,11 +28,17 @@ router.get('/:id', (req, res) => {
     return res.status(404).json({ error: 'Order not found' });
   }
 
-  // Training note: this returns more data than a real API should, demonstrating excessive data exposure.
-  // Remediation example: return only the fields the caller needs and authorize access to the object.
+  const safeOrderView = {
+    id: order.id,
+    customerName: order.customerName,
+    total: order.total,
+    items: order.items,
+  };
+
+  // Remediation: return only fields required by the client response contract.
   res.json({
-    order,
-    note: 'This response intentionally over-shares for AppSec training.',
+    order: safeOrderView,
+    note: 'Response minimized to required fields for AppSec remediation validation.',
   });
 });
 
