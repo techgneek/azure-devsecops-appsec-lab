@@ -112,6 +112,30 @@ Documented lab closure sample:
 
 - `Secrets Scan` run `28994165739` passed after hardcoded secret pattern removal.
 
+Completed remediation evidence in this lab:
+
+- AF-001 security headers hardening validated at `/headers`.
+- AF-004 API response minimization validated at `/api/orders/1001`.
+
+Expected screenshot filenames for portfolio proof:
+
+- `screenshots/before-security-headers.png`
+- `screenshots/after-security-headers.png`
+- `screenshots/before-api-data-exposure.png`
+- `screenshots/after-api-data-exposure.png`
+
+## Phase 7.5: Portfolio Packaging
+
+To present this lab as a project artifact:
+
+1. Keep one architecture image and one workflow image near the top of the README.
+2. Include before/after endpoint evidence for remediated findings.
+3. Keep finding status synchronized across:
+	- `reports/appsec-findings-report.md`
+	- `reports/remediation-plan.md`
+	- `reports/remediation-rounds.md`
+4. Verify every closed finding includes a concrete re-test step.
+
 ## Phase 8: Teardown
 
 When done, destroy Azure resources to avoid unnecessary cost.

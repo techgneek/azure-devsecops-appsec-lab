@@ -40,10 +40,12 @@ This project simulates the implementation of a lightweight Application Security 
 - [Step 7: Map Findings to OWASP Top 10](#step-7-map-findings-to-owasp-top-10)
 - [Step 8: Remediation Planning and Ownership](#step-8-remediation-planning-and-ownership)
 - [Step 9: Validation and Re-Testing](#step-9-validation-and-re-testing)
+- [Remediation Proof Gallery](#remediation-proof-gallery)
 - [Program Outcome Summary](#program-outcome-summary)
 - [Live Demo Flow](#live-demo-flow)
 - [Quick Start](#quick-start)
 - [Safety Warning](#safety-warning)
+- [Screenshot Drop Checklist](#screenshot-drop-checklist)
 - [What I Would Improve Next](#what-i-would-improve-next)
 - [Interview Framing](#interview-framing)
 
@@ -282,6 +284,22 @@ Examples of validation in this lab:
 
 This is the main bridge between vulnerability management and AppSec: closure must be evidence-based.
 
+## Remediation Proof Gallery
+
+Two findings were remediated end-to-end with before/after evidence and validation:
+
+| Finding | Before State | After State | Closure Evidence |
+| --- | --- | --- | --- |
+| AF-001 Missing Security Headers | `/headers` reported missing baseline headers | `/headers` returns hardened header set and empty missing list | `reports/appsec-findings-report.md`, `reports/remediation-rounds.md` |
+| AF-004 Excessive API Data Exposure | `/api/orders/1001` exposed `internalNotes` and `paymentTokenLast4` | `/api/orders/1001` returns only required order fields | `reports/appsec-findings-report.md`, `reports/remediation-rounds.md` |
+
+Validation commands used:
+
+```bash
+curl -sS https://appsec-lab-web-4182b0.azurewebsites.net/headers
+curl -sS https://appsec-lab-web-4182b0.azurewebsites.net/api/orders/1001
+```
+
 ---
 
 ## Program Outcome Summary
@@ -339,9 +357,26 @@ npm start
 
 This is an intentionally vulnerable personal training environment. Do not scan or attack third-party systems. Only run active testing against the lab assets you own and control.
 
+## Screenshot Drop Checklist
+
+If you want the README to display the final before/after remediation images, place these files in `screenshots/`:
+
+- `before-security-headers.png`
+- `after-security-headers.png`
+- `before-api-data-exposure.png`
+- `after-api-data-exposure.png`
+
+Once present, they can be embedded directly into this README as final proof artifacts.
+
 ## What I Would Improve Next
 
 - Add a standardized triage worksheet per finding to reduce review variability.
-- Add before-and-after remediation evidence for each open finding.
+- Extend before/after remediation evidence to all remaining open findings.
 - Add trend tracking across scan cycles to show reduction over time.
 - Add defined SLA targets by severity for simulated AppSec operations.
+
+## Interview Framing
+
+Use this one-minute summary:
+
+"I treated AppSec like vulnerability management for software. I deployed a controlled app in Azure, integrated scanning in CI/CD, triaged and mapped findings to OWASP, created owner-ready remediation issues, and then closed findings with before/after evidence and re-test validation."
