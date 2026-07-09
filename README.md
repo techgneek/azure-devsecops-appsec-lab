@@ -33,6 +33,7 @@ This project simulates the implementation of a lightweight Application Security 
 - [Step 1: Define the AppSec Workflow](#step-1-define-the-appsec-workflow)
 - [Step 2: Build the Azure Infrastructure](#step-2-build-the-azure-infrastructure)
 - [Step 3: Deploy the Training Application](#step-3-deploy-the-training-application)
+- [Containerization Readiness](#containerization-readiness)
 - [Step 4: Review Application Risk Scenarios](#step-4-review-application-risk-scenarios)
 - [Step 5: Integrate AppSec Scanning Into CI/CD](#step-5-integrate-appsec-scanning-into-cicd)
 - [Step 6: Triage and Prioritize Findings](#step-6-triage-and-prioritize-findings)
@@ -129,6 +130,24 @@ The app is deployed through GitHub Actions instead of being manually copied into
 | ![GitHub Actions deploy workflow](screenshots/deploy-workflow.png) | Shows deployment is handled through CI/CD instead of manual upload. |
 
 This gives the lab a realistic DevSecOps shape: code changes move through a pipeline, and security checks can be attached to that workflow.
+
+## Containerization Readiness
+
+The app now includes Docker support so the same workload can be built and executed as a container image.
+
+Why this matters for AppSec and vulnerability management:
+
+- Container images become another asset type that must be inventoried and scanned.
+- Base image and dependency risk can be assessed before runtime deployment.
+- The same finding lifecycle still applies: detect, prioritize, assign, remediate, validate.
+
+Local container commands:
+
+```bash
+cd app
+docker build -t azure-devsecops-appsec-lab:local .
+docker run -p 3000:3000 azure-devsecops-appsec-lab:local
+```
 
 ---
 

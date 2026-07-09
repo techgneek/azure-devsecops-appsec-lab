@@ -1,0 +1,38 @@
+name: Trivy Container Scan
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  trivy-image-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Build container image from app Dockerfile
+        run: docker build -t azure-devsecops-appsec-lab:ci ./app
+
+      - name: Run Trivy image scan (table output)
+        uses: aquasecurity/trivy-action@0.24.0
+        with:
+          image-ref: azure-devsecops-appsec-lab:ci
+          format: table
+          output: trivy-image-report.txt
+          severity: CRITICAL,HIGH,MEDIUM,LOW
+          vuln-type: os,library
+          ignore-unfixed: true
+          exit-code: "0"
+
+      - name: Print Trivy report in logs
+        run: cat trivy-image-report.txt
+
+      - name: Upload Trivy report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: trivy-image-report
+          path: trivy-image-report.txt

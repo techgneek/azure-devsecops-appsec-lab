@@ -51,6 +51,17 @@ npm start
 
 Deploy to Azure through GitHub Actions using `deploy.yml` after required repository secrets are configured.
 
+## Phase 3.5: Build And Run The Container Locally
+
+From `app/`:
+
+```bash
+docker build -t azure-devsecops-appsec-lab:local .
+docker run -p 3000:3000 azure-devsecops-appsec-lab:local
+```
+
+This phase shows container deployment readiness and introduces container images as a first-class AppSec asset that can be scanned and tracked.
+
 ## Phase 4: Execute AppSec Scans
 
 Run these workflows:
