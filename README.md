@@ -14,47 +14,7 @@ The chronology follows the same build, validate, inspect, prioritize, confirm fl
 
 ## Architecture at a Glance
 
-```mermaid
-flowchart LR
-	subgraph IaC[Infrastructure as Code]
-		TF[Terraform root module\ninfra/]
-		AZ[Azure Resource Group\nLinux App Service Plan\nLinux Web App]
-		TF --> AZ
-	end
-
-	subgraph App[Training App]
-		HOME[Home route /]
-		HEALTH[/health/]
-		PROFILE[/profile?id=1/]
-		SEARCH[/search?q=test/]
-		DEBUG[/debug/]
-		ORDERS[/api/orders/:id/]
-		HEADERS[/headers/]
-	end
-
-	subgraph CI[GitHub Actions]
-		DEPLOY[Deploy App Service]
-		CODEQL[CodeQL]
-		ZAP[ZAP Baseline]
-		SECRETS[Gitleaks]
-		DEPENDABOT[Dependabot]
-	end
-
-	subgraph REPORTS[Evidence and Reporting]
-		REPORTS_DIR[reports/]
-		OWASP[OWASP Top 10 mapping]
-		PLAN[Remediation plan]
-		TALK[Interview talking points]
-	end
-
-	AZ --> App
-	CI --> App
-	CI --> REPORTS_DIR
-	App --> REPORTS_DIR
-	REPORTS_DIR --> OWASP
-	REPORTS_DIR --> PLAN
-	REPORTS_DIR --> TALK
-```
+[![Architecture at a glance thumbnail](screenshots/architecture-thumbnail.svg)](screenshots/architecture-thumbnail.svg)
 
 ## Evidence Snapshot
 
