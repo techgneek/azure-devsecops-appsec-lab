@@ -1,170 +1,322 @@
-# Azure DevSecOps AppSec Vulnerability Management Lab
+# Application Security Vulnerability Management Program Simulation
 
-This walkthrough is structured like a tutorial. We move from infrastructure to app routes, then to CI/CD, security scans, and the reports that pull the evidence together.
+This project simulates the implementation of a lightweight Application Security vulnerability management workflow using Azure, Terraform, GitHub Actions, and common AppSec scanning tools.
 
-The chronology follows the same build, validate, inspect, prioritize, confirm flow you would use in vulnerability management, but the main focus here is showing how the lab works end to end.
+***Inception State:*** the application has no formal AppSec vulnerability workflow, no repeatable scan process, no OWASP Top 10 mapping, no documented remediation ownership, and no evidence-based validation process after fixes are made.
 
-## Guided Walkthrough
+***Completion State:*** Azure infrastructure is deployed with Terraform, a training application is hosted on Azure App Service, AppSec scanning is integrated into GitHub Actions, findings are mapped to OWASP Top 10, remediation actions are documented, and closure can be validated through re-scanning.
 
-1. Start with Terraform in `infra/` to create the Azure resource group, App Service Plan, and Linux Web App.
-2. Deploy the training app so the intentionally vulnerable routes are live in a predictable environment.
-3. Exercise the endpoints in the browser and observe how each route exposes a different AppSec lesson.
-4. Run the GitHub Actions workflows for deployment, CodeQL, secrets scanning, and dependency monitoring.
-5. Use the reports in `reports/` to map findings back to OWASP Top 10 and to the remediation plan.
+---
 
-## Architecture at a Glance
+<img width="1000" alt="Architecture at a glance" src="screenshots/architecture-thumbnail.svg">
 
-[![Architecture at a glance thumbnail](screenshots/architecture-thumbnail.svg)](screenshots/architecture-thumbnail.svg)
+---
 
-## Evidence Snapshot
+## Technology Utilized
 
-| Stage | Screenshot | Why it matters |
+- **Terraform** - infrastructure as code foundation
+- **Azure App Service** - cloud-hosted application runtime
+- **Node.js / Express** - intentionally vulnerable training application
+- **GitHub Actions** - CI/CD and security scanning workflows
+- **CodeQL** - SAST / source code analysis
+- **Gitleaks** - secrets scanning
+- **Dependabot** - dependency monitoring / SCA-style visibility
+- **OWASP ZAP Baseline** - DAST-style passive testing against the running app
+- **OWASP Top 10** - application risk categorization
+
+---
+
+## Table of Contents
+
+- [Project Objective](#project-objective)
+- [AppSec Program Lifecycle](#appsec-program-lifecycle)
+- [Step 1: Define the AppSec Workflow](#step-1-define-the-appsec-workflow)
+- [Step 2: Build the Azure Infrastructure](#step-2-build-the-azure-infrastructure)
+- [Step 3: Deploy the Training Application](#step-3-deploy-the-training-application)
+- [Step 4: Review Application Risk Scenarios](#step-4-review-application-risk-scenarios)
+- [Step 5: Integrate AppSec Scanning Into CI/CD](#step-5-integrate-appsec-scanning-into-cicd)
+- [Step 6: Triage and Prioritize Findings](#step-6-triage-and-prioritize-findings)
+- [Step 7: Map Findings to OWASP Top 10](#step-7-map-findings-to-owasp-top-10)
+- [Step 8: Remediation Planning and Ownership](#step-8-remediation-planning-and-ownership)
+- [Step 9: Validation and Re-Testing](#step-9-validation-and-re-testing)
+- [Program Outcome Summary](#program-outcome-summary)
+- [Live Demo Flow](#live-demo-flow)
+- [Quick Start](#quick-start)
+- [Safety Warning](#safety-warning)
+- [What I Would Improve Next](#what-i-would-improve-next)
+- [Interview Framing](#interview-framing)
+
+---
+
+## Project Objective
+
+The goal of this project is to show how enterprise vulnerability management concepts translate into application security.
+
+In traditional vulnerability management, the focus is usually on servers, endpoints, CVEs, scanner output, remediation owners, and validation. In AppSec, the same lifecycle still applies, but the assets shift to applications, APIs, source code, dependencies, secrets, containers, and CI/CD pipelines.
+
+This lab demonstrates that lifecycle:
+
+1. Build a controlled application environment.
+2. Identify application security weaknesses.
+3. Collect evidence through manual review and scanning workflows.
+4. Map findings to OWASP Top 10.
+5. Prioritize based on exposure, exploitability, and business risk.
+6. Assign remediation actions to the correct owner.
+7. Validate closure through re-testing.
+
+---
+
+## AppSec Program Lifecycle
+
+| Program Phase | What Happens | Evidence In This Repository |
 | --- | --- | --- |
-| Deployment | ![GitHub Actions deploy workflow](screenshots/deploy-workflow.png) | Shows the app being deployed through Actions instead of manually copied into App Service. |
-| Static analysis | ![CodeQL analysis run](screenshots/codeql-workflow.png) | Shows the code scanning pipeline and the warnings that came out of it. |
-| Secrets scan | ![Secrets scan terminal output](screenshots/secrets-scan-terminal.png) | Shows the scan workflow catching the lab secret exposure and reporting it back cleanly. |
-| Route review | ![Header route response](screenshots/header-route.png) | Shows how the app returns route-level evidence for the security walkthrough. |
+| Build | Terraform creates the Azure resource group, App Service Plan, and Linux Web App | `infra/` |
+| Deploy | GitHub Actions deploys the Node.js training app to Azure App Service | `.github/workflows/deploy.yml` |
+| Identify | Routes intentionally expose AppSec learning scenarios | `app/` and route screenshots |
+| Scan | CodeQL, Gitleaks, Dependabot, and ZAP provide AppSec signals | `.github/workflows/` |
+| Triage | Findings are reviewed for severity, exposure, exploitability, and owner | `reports/appsec-findings-report.md` |
+| Prioritize | Findings are ranked P1/P2/P3 using vulnerability management logic | `reports/remediation-plan.md` |
+| Map | Issues are translated into OWASP Top 10 categories | `reports/owasp-top-10-mapping.md` |
+| Validate | Fixes are re-tested through route review or scan workflow evidence | `reports/remediation-plan.md` |
 
-If you want the strongest live demo flow, open the README from top to bottom and follow the same order: infrastructure, app behavior, pipeline evidence, then the reports.
+---
 
-## Route Tour
+## Step 1: Define the AppSec Workflow
 
-This is the part of the walkthrough where I open the app and move through the routes in a deliberate order. The goal is to show that the lab is not a random collection of endpoints, but a structured set of examples that each demonstrate one security concept.
+The first step was to define the AppSec process the same way a vulnerability management program would define its operating model.
 
-| Route | Screenshot | What it shows |
+The workflow used in this project is:
+
+1. **Discover** the weakness through a route, code path, dependency, or scan result.
+2. **Validate** that the issue is reproducible and relevant.
+3. **Classify** the issue using OWASP Top 10.
+4. **Prioritize** based on exposure, severity, exploitability, and data sensitivity.
+5. **Assign ownership** to the developer, API owner, or platform owner.
+6. **Remediate** the underlying issue.
+7. **Re-test** the app or scan workflow to confirm closure.
+
+This mirrors the vulnerability management process I already understand, but applies it to application security instead of only infrastructure security.
+
+---
+
+## Step 2: Build the Azure Infrastructure
+
+Terraform is used as the base infrastructure layer. The infrastructure creates a low-cost Azure environment for hosting the training app.
+
+The Terraform deployment provisions:
+
+- Azure Resource Group
+- Linux App Service Plan
+- Linux Web App
+- App settings
+- Resource tags
+- Outputs for the app name, URL, region, and resource group
+
+The Terraform files are located in `infra/`.
+
+This step matters because it shows that the application security workflow is not just local code review. The app is deployed to a real cloud runtime where DAST and response validation can be performed against a live URL.
+
+---
+
+## Step 3: Deploy the Training Application
+
+The application is a small intentionally vulnerable Node.js / Express training app. It is not intended for production use. Its purpose is to provide controlled examples of common AppSec findings.
+
+The app is deployed through GitHub Actions instead of being manually copied into Azure App Service.
+
+| Deployment Evidence | Why It Matters |
+| --- | --- |
+| ![GitHub Actions deploy workflow](screenshots/deploy-workflow.png) | Shows deployment is handled through CI/CD instead of manual upload. |
+
+This gives the lab a realistic DevSecOps shape: code changes move through a pipeline, and security checks can be attached to that workflow.
+
+---
+
+## Step 4: Review Application Risk Scenarios
+
+The app contains routes that demonstrate common application security concerns in a safe, controlled way.
+
+| Route | Screenshot | AppSec Concept |
 | --- | --- | --- |
-| Home | ![Home page route list](screenshots/home-route.png) | The landing page gives the map of the lab and sets up the rest of the walkthrough. |
-| Health | ![Health endpoint response](screenshots/health-route.png) | A safe baseline endpoint that confirms the app is running. |
-| Profile | ![Profile endpoint response](screenshots/profile-route.png) | A user-facing endpoint that illustrates direct object access in a simple form. |
-| Search | ![Search endpoint response](screenshots/search-route.png) | A deliberately unsafe-looking query flow that helps explain input handling concerns. |
-| Debug | ![Debug endpoint response](screenshots/debug-route.png) | A route that exposes debug details and a fake secret for scanning demos. |
-| Orders | ![Orders API response](screenshots/orders-route.png) | A richer JSON response that shows excessive data exposure in the API layer. |
-| Headers | ![Header route response](screenshots/header-route.png) | A route centered on missing security headers and how the app documents that gap. |
+| `/` | ![Home page route list](screenshots/home-route.png) | Lab landing page and route map |
+| `/profile?id=1` | ![Profile endpoint response](screenshots/profile-route.png) | Broken access control / IDOR-style behavior |
+| `/debug` | ![Debug endpoint response](screenshots/debug-route.png) | Debug exposure and secret-handling risk |
+| `/api/orders/:id` | ![Orders API response](screenshots/orders-route.png) | Excessive data exposure in API responses |
+| `/headers` | ![Header route response](screenshots/header-route.png) | Missing browser security headers |
 
-When I present this live, I keep the order consistent: homepage first, then the safer endpoint, then the more revealing ones, and finally the route that ties back to headers and response hardening.
+The point is not to exploit anything. The point is to show how a security analyst can observe application behavior, identify risk patterns, collect evidence, and translate the issue into remediation guidance.
 
-## Scans And Findings
+---
 
-After the route tour, I move into the security evidence. This is where the lab shows the difference between a vulnerable app and an AppSec workflow: the workflows detect issues, the reports explain them, and the OWASP mapping puts them into a category the team can discuss.
+## Step 5: Integrate AppSec Scanning Into CI/CD
 
-| Signal | Tool | What I look for | Supporting report |
-| --- | --- | --- | --- |
-| Code quality and code paths | CodeQL | Broken access control patterns, unsafe input handling, and other code-level issues | [AppSec findings report](reports/appsec-findings-report.md) |
-| Secret exposure | Gitleaks / Secrets scan | Hardcoded secret patterns and any cleanup needed after removal | [Remediation plan](reports/remediation-plan.md) |
-| Dependency risk | Dependabot | Outdated or vulnerable packages that need review and update | [OWASP mapping](reports/owasp-top-10-mapping.md) |
-| Active app hardening checks | ZAP baseline | Missing headers and other response hardening gaps | [AppSec findings report](reports/appsec-findings-report.md) |
+The next step was to connect the application to security scanning workflows.
 
-The main findings in this lab line up with broken access control, security misconfiguration, injection, and vulnerable components. That is the point of the walkthrough: show the route, show the scan, and then show the report that explains why it matters.
-
-If I were explaining the flow live, I would keep it simple: the app exposes the behavior, the scanners catch the signal, and the reports translate it into OWASP language and remediation actions.
-
-## Remediation Loop
-
-This is the final step in the walkthrough. Once a finding is confirmed, I treat it the same way I would in vulnerability management: assign it to an owner, define the fix, re-run the scan, and document the result.
-
-| Step | What Happens | Where It Shows Up |
+| Signal | Tool | What It Demonstrates |
 | --- | --- | --- |
-| Confirm | Reproduce the issue in the route, workflow, or dependency | [AppSec findings report](reports/appsec-findings-report.md) |
-| Prioritize | Rank by exposure, exploitability, and data sensitivity | [Remediation plan](reports/remediation-plan.md) |
-| Translate | Map the issue into OWASP Top 10 language | [OWASP Top 10 mapping](reports/owasp-top-10-mapping.md) |
-| Fix | Remove the risky behavior, harden the app, or update the dependency | [Vulnerability management translation](reports/vulnerability-management-to-appsec-translation.md) |
-| Validate | Re-run the relevant scan or re-test the route | [Remediation plan](reports/remediation-plan.md) |
+| Static code analysis | CodeQL | SAST-style review of source code and risky code paths |
+| Secret exposure | Gitleaks | Detection of hardcoded secret patterns in source control |
+| Dependency risk | Dependabot | SCA-style monitoring for vulnerable or outdated dependencies |
+| Running app checks | OWASP ZAP Baseline | Passive DAST-style review against the deployed Azure App Service URL |
 
-The key message is that the lab is not just about finding flaws. It is about showing the full loop from exposure to evidence to closure, with enough structure to explain each step clearly during a walkthrough.
+| Scan Evidence | Why It Matters |
+| --- | --- |
+| ![CodeQL analysis run](screenshots/codeql-workflow.png) | Shows code scanning attached to the repository. |
+| ![Secrets scan terminal output](screenshots/secrets-scan-terminal.png) | Shows the lab detecting and validating a secrets exposure scenario. |
+
+This is where the lab shifts from being a vulnerable app to being an AppSec workflow. The scans create signals, and the reports turn those signals into prioritized remediation work.
+
+---
+
+## Step 6: Triage and Prioritize Findings
+
+The findings are tracked in `reports/appsec-findings-report.md`.
+
+The lab findings include:
+
+- Missing security headers
+- Debug endpoint exposure
+- IDOR-style broken access control
+- Excessive API data exposure
+- Fake hardcoded secret pattern
+- Dependency monitoring exposure
+- Unsafe input handling example
+
+Each finding is documented with:
+
+- Finding ID
+- Tool or evidence source
+- Severity
+- OWASP category
+- Evidence
+- Business risk
+- Recommended fix
+- Owner
+- Status
+- Validation step
+
+This is the same discipline used in vulnerability management: a finding is not useful unless it has evidence, risk context, ownership, and a closure method.
+
+---
+
+## Step 7: Map Findings to OWASP Top 10
+
+The OWASP mapping is documented in `reports/owasp-top-10-mapping.md`.
+
+In plain English, OWASP Top 10 is similar to vulnerability categories for application security. Instead of focusing only on infrastructure CVEs, it groups common software risk patterns such as broken access control, injection, vulnerable components, and security misconfiguration.
+
+| Lab Finding | OWASP Category |
+| --- | --- |
+| IDOR-style profile access | Broken Access Control |
+| Excessive API data exposure | Broken Access Control |
+| Unsafe input handling | Injection |
+| Debug endpoint exposure | Security Misconfiguration |
+| Missing security headers | Security Misconfiguration |
+| Dependency monitoring finding | Vulnerable and Outdated Components |
+| Hardcoded fake secret | Security Misconfiguration / Secrets Management |
+
+This helped connect my vulnerability management background to AppSec language that developers, security teams, and leadership can understand.
+
+---
+
+## Step 8: Remediation Planning and Ownership
+
+The remediation plan is documented in `reports/remediation-plan.md`.
+
+Findings are prioritized using factors familiar from vulnerability management:
+
+- Severity
+- Internet-facing exposure
+- Exploitability
+- Data sensitivity
+- Business impact
+- Ease of remediation
+- Owner assignment
+- Validation method
+
+The highest-priority findings are access control, exposed debug behavior, excessive API data exposure, and secret-handling issues because those can directly expose sensitive information or create clear abuse paths.
+
+---
+
+## Step 9: Validation and Re-Testing
+
+The final step is validation. A finding should not be considered closed just because a code change was made.
+
+Examples of validation in this lab:
+
+- Re-run the secrets scan after removing a hardcoded secret pattern.
+- Re-test `/debug` and confirm it is removed or protected.
+- Re-test `/profile?id=` with different IDs and confirm unauthorized access is blocked.
+- Re-test `/api/orders/:id` and confirm sensitive internal fields are removed.
+- Re-run ZAP baseline and confirm security header findings are reduced or closed.
+- Review dependency alerts after package updates.
+
+This is the main bridge between vulnerability management and AppSec: closure must be evidence-based.
+
+---
+
+## Program Outcome Summary
+
+This project established a complete AppSec vulnerability management workflow in a controlled Azure lab environment.
+
+| Outcome | Result |
+| --- | --- |
+| Cloud infrastructure | Azure App Service environment provisioned with Terraform |
+| Application target | Intentionally vulnerable Node.js app deployed for safe AppSec testing |
+| Scanning layers | SAST, DAST, SCA-style dependency monitoring, and secrets scanning represented |
+| Findings documented | 7 AppSec findings captured in a triage report |
+| OWASP mapping | Findings mapped to common OWASP Top 10 categories |
+| Remediation plan | Findings prioritized by exposure, exploitability, and business risk |
+| Validation loop | Re-test steps documented for each major finding |
+
+The strongest takeaway is that AppSec is not disconnected from vulnerability management. The workflow is familiar: identify, validate, prioritize, assign ownership, remediate, and re-test.
+
+---
 
 ## Live Demo Flow
 
-This is the order I would use when presenting the lab live.
-
-1. Start at the top of the README and point to the architecture diagram so the audience sees the full shape of the lab.
-2. Open the route tour and move from the home page to the safer endpoints before showing the more revealing ones.
-3. Pause on the debug, orders, and headers routes to explain what kind of issue each one represents.
-4. Jump to the scans and findings section so the audience sees how CodeQL, Gitleaks, Dependabot, and ZAP turn behavior into evidence.
-5. Finish with the remediation loop and explain how each finding gets assigned, fixed, and re-tested.
-6. Use the [interview talking points](reports/interview-talking-points.md) if you want a short version of the same story for conversation.
-
-The sequence matters because it keeps the story linear: build the environment, exercise the app, collect the signals, and close the loop.
-
-## Lab Overview
-
-This repository contains a small Azure-hosted training environment built in phases:
-
-- Terraform provisions the Azure infrastructure.
-- A small intentionally vulnerable Node.js app demonstrates common AppSec issues.
-- GitHub Actions shows CI/CD plus SAST, DAST, SCA, and secrets scanning.
-- The reports folder maps findings to OWASP Top 10 and remediation priorities.
-
-## Architecture Summary
-
-- `infra/` provisions an Azure Resource Group, Linux App Service Plan, and Linux Web App.
-- `app/` contains the intentionally vulnerable training application.
-- `.github/workflows/` contains deployment and security scanning automation.
-- `reports/` contains AppSec findings, OWASP mapping, remediation guidance, and interview notes.
-
-## What The Lab Teaches
-
-- Infrastructure as Code with Terraform
-- Azure App Service deployment
-- GitHub Actions CI/CD
-- SAST
-- DAST
-- SCA / dependency scanning
-- Secrets scanning
-- OWASP Top 10
-- AppSec vulnerability triage
-- Remediation coordination
-- How vulnerability management maps to AppSec
-
-## Tools Used
-
-- Terraform
-- Azure App Service on Linux
-- Node.js and Express
-- GitHub Actions
-- CodeQL
-- OWASP ZAP baseline scan
-- Gitleaks
-- Dependabot
-
-## How Terraform Fits
-
-Terraform is the lab foundation. It creates the Azure resource group, low-cost Linux App Service Plan, and Linux Web App that will host the app. The Terraform layer also demonstrates naming, outputs, tagging, and cleanup discipline.
-
-## How GitHub Actions Fits
-
-GitHub Actions represents the DevSecOps pipeline. It installs dependencies, runs tests, deploys to Azure App Service, and runs security scanning workflows so you can see how application security is built into delivery instead of added afterward.
-
-## Safety Warning
-
-This is an intentionally vulnerable personal lab only. Do not scan or attack third-party systems. Only run DAST and other active testing against the Azure App Service deployed by this repository in your own subscription.
+1. Open the architecture image and explain inception versus completion state.
+2. Show deployment evidence and route-level risk scenarios.
+3. Walk through scan evidence from CodeQL and secrets scanning.
+4. Move to triage, OWASP mapping, and remediation plan artifacts.
+5. Close with validation examples and outcome summary.
 
 ## Quick Start
 
 1. Review [SECURITY.md](SECURITY.md) and [infra/README.md](infra/README.md).
 2. Log in to Azure with `az login`.
 3. Copy `infra/terraform.tfvars.example` to `infra/terraform.tfvars`.
-4. Run Terraform from the `infra/` directory:
-	- `terraform init`
-	- `terraform fmt`
-	- `terraform validate`
-	- `terraform plan`
-	- `terraform apply`
-5. Capture the Terraform outputs, especially the app service URL.
-6. Run the app locally from `app/` with `npm start`.
-7. Use the GitHub Actions workflows to deploy and scan the app.
-8. Read the reports in `reports/` to practice triage and walkthrough explanations.
+4. Run Terraform from `infra/`:
+
+```bash
+terraform init
+terraform fmt
+terraform validate
+terraform plan
+terraform apply
+```
+
+5. Run the app locally from `app/`:
+
+```bash
+npm install
+npm start
+```
+
+6. Use GitHub Actions workflows to deploy and scan.
+7. Review `reports/` and practice one remediation + re-test cycle.
+
+## Safety Warning
+
+This is an intentionally vulnerable personal training environment. Do not scan or attack third-party systems. Only run active testing against the lab assets you own and control.
 
 ## What I Would Improve Next
 
-If I extended the lab, I would improve the process around it before I added more polish.
+- Add a standardized triage worksheet per finding to reduce review variability.
+- Add before-and-after remediation evidence for each open finding.
+- Add trend tracking across scan cycles to show reduction over time.
+- Add defined SLA targets by severity for simulated AppSec operations.
 
-- Add a tighter triage flow so each finding goes from scan output to impact assessment to remediation priority faster.
-- Add a repeatable validation checklist for each route and workflow so the demo proves the issue, the fix, and the retest in the same order every time.
-- Capture a clearer before-and-after path for each remediation so the AppSec lesson is tied to an actual control or code change.
-- Add a short decision log for why a finding is P1, P2, or P3 so the prioritization feels like real vulnerability management instead of just a lab exercise.
+## Interview Framing
 
-That would make the lab stronger as an AppSec process walkthrough because it would show how a team actually finds, validates, prioritizes, and closes issues.
-
-
-
-
+If I describe this project in an interview, I frame it as an AppSec vulnerability management program simulation, not just a vulnerable app lab. The value is the full operational loop: discovery, triage, ownership, remediation, and evidence-based closure.
