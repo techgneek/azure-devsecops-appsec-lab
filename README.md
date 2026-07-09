@@ -17,10 +17,13 @@ This project simulates the implementation of a lightweight Application Security 
 - **Terraform** - infrastructure as code foundation
 - **Azure App Service** - cloud-hosted application runtime
 - **Node.js / Express** - intentionally vulnerable training application
+- **Docker** - containerized app packaging
 - **GitHub Actions** - CI/CD and security scanning workflows
 - **CodeQL** - SAST / source code analysis
 - **Gitleaks** - secrets scanning
 - **Dependabot** - dependency monitoring / SCA-style visibility
+- **Trivy** - container image and IaC misconfiguration scanning
+- **Checkov** - Terraform / IaC security scanning
 - **OWASP ZAP Baseline** - DAST-style passive testing against the running app
 - **OWASP Top 10** - application risk categorization
 
@@ -36,6 +39,7 @@ This project simulates the implementation of a lightweight Application Security 
 - [Containerization Readiness](#containerization-readiness)
 - [Step 4: Review Application Risk Scenarios](#step-4-review-application-risk-scenarios)
 - [Step 5: Integrate AppSec Scanning Into CI/CD](#step-5-integrate-appsec-scanning-into-cicd)
+- [Secure SDLC Alignment](#secure-sdlc-alignment)
 - [Step 6: Triage and Prioritize Findings](#step-6-triage-and-prioritize-findings)
 - [Step 7: Map Findings to OWASP Top 10](#step-7-map-findings-to-owasp-top-10)
 - [Step 8: Remediation Planning and Ownership](#step-8-remediation-planning-and-ownership)
@@ -47,7 +51,7 @@ This project simulates the implementation of a lightweight Application Security 
 - [Safety Warning](#safety-warning)
 - [Screenshot Drop Checklist](#screenshot-drop-checklist)
 - [What I Would Improve Next](#what-i-would-improve-next)
-- [Interview Framing](#interview-framing)
+- [Project Summary](#project-summary)
 
 ---
 
@@ -178,6 +182,7 @@ The next step was to connect the application to security scanning workflows.
 | Static code analysis | CodeQL | SAST-style review of source code and risky code paths |
 | Secret exposure | Gitleaks | Detection of hardcoded secret patterns in source control |
 | Dependency risk | Dependabot | SCA-style monitoring for vulnerable or outdated dependencies |
+| Infrastructure misconfiguration | Checkov + Trivy IaC | Terraform security misconfiguration detection before apply |
 | Running app checks | OWASP ZAP Baseline | Passive DAST-style review against the deployed Azure App Service URL |
 
 | Scan Evidence | Why It Matters |
@@ -186,6 +191,16 @@ The next step was to connect the application to security scanning workflows.
 | ![Secrets scan terminal output](screenshots/secrets-scan-terminal.png) | Shows the lab detecting and validating a secrets exposure scenario. |
 
 This is where the lab shifts from being a vulnerable app to being an AppSec workflow. The scans create signals, and the reports turn those signals into prioritized remediation work.
+
+## Secure SDLC Alignment
+
+This lab maps to secure SDLC phases in practical terms:
+
+- **Design:** define AppSec workflow, risk triage method, and OWASP mapping.
+- **Build:** implement Terraform infrastructure and application code changes.
+- **Test:** run SAST, DAST, SCA, secrets scanning, container scanning, and IaC scanning.
+- **Release:** deploy through a CI/CD workflow in GitHub Actions.
+- **Operate:** track findings, assign owners, prioritize remediation, and validate closure with evidence.
 
 ---
 
@@ -247,6 +262,8 @@ In plain English, OWASP Top 10 is similar to vulnerability categories for applic
 | Hardcoded fake secret | Security Misconfiguration / Secrets Management |
 
 This helped connect my vulnerability management background to AppSec language that developers, security teams, and leadership can understand.
+
+For broader secure SDLC and NIST-style alignment, see `reports/secure-sdlc-nist-mapping.md`.
 
 ---
 
@@ -383,12 +400,16 @@ These image paths are the canonical names used by the proof gallery above.
 ## What I Would Improve Next
 
 - Add a standardized triage worksheet per finding to reduce review variability.
-- Extend before/after remediation evidence to all remaining open findings.
+- Integrate ASM / CAASM tooling for broader asset and exposure visibility.
+- Add SOAR-style automation to create tickets from validated findings.
+- Add Jenkins as an additional CI/CD pipeline example.
+- Add deeper authentication and authorization workflows.
+- Add API schema testing and rate-limit testing.
+- Expand secure coding examples with before/after pull requests.
+- Map findings to additional frameworks such as NIST SSDF, NIST CSF, and CIS Controls.
 - Add trend tracking across scan cycles to show reduction over time.
 - Add defined SLA targets by severity for simulated AppSec operations.
 
-## Interview Framing
+## Project Summary
 
-Use this one-minute summary:
-
-"I treated AppSec like vulnerability management for software. I deployed a controlled app in Azure, integrated scanning in CI/CD, triaged and mapped findings to OWASP, created owner-ready remediation issues, and then closed findings with before/after evidence and re-test validation."
+This project demonstrates an end-to-end AppSec vulnerability management workflow in a controlled Azure lab. It combines infrastructure provisioning, CI/CD-integrated scanning, OWASP-based categorization, remediation ownership, and evidence-based validation to show how findings move from detection to closure.

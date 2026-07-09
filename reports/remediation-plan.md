@@ -32,3 +32,7 @@ This plan prioritizes findings the way a vulnerability management analyst would 
 5. Assign to the owning developer or platform team.
 6. Re-scan or re-test after the fix.
 7. For secret findings, remove the hardcoded value, replace it with a placeholder, and rotate any real secret before re-scanning.
+
+## Secure SDLC Context
+
+The remediation process supports secure SDLC practices by turning scan output into owner-assigned fixes, validation steps, and closure evidence. See `reports/secure-sdlc-nist-mapping.md` for the broader mapping.

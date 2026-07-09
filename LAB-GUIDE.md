@@ -69,7 +69,10 @@ Run these workflows:
 1. `codeql.yml` for SAST
 2. Dependabot for dependency monitoring (SCA)
 3. `secrets-scan.yml` for secret-pattern detection
-4. `zap-baseline.yml` for DAST baseline checks
+4. `checkov-iac-scan.yml` for Terraform IaC misconfiguration checks
+5. `trivy-iac-scan.yml` for Terraform misconfiguration checks
+6. `trivy-container-scan.yml` for container image vulnerability checks
+7. `zap-baseline.yml` for DAST baseline checks
 
 Use ZAP only against the Azure App Service URL from this lab.
 

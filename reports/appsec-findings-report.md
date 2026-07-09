@@ -20,3 +20,7 @@ This report summarizes the intentionally vulnerable training app in this lab. It
 - AF-005 closure evidence: `Secrets Scan` run `28994165739` completed successfully after the hardcoded value was replaced with a placeholder.
 - AF-001 remediation evidence: before/after captures completed (`screenshots/before-security-headers.png`, `screenshots/after-security-headers.png`) with header baseline validated.
 - AF-004 remediation evidence: before/after captures completed (`screenshots/before-api-data-exposure.png`, `screenshots/after-api-data-exposure.png`) with minimized response validated.
+
+## Framework Mapping
+
+For secure SDLC and NIST-style mapping, see `reports/secure-sdlc-nist-mapping.md`.

@@ -1,0 +1,35 @@
+name: Trivy IaC Scan
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  trivy-iac-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Run Trivy config scan against Terraform in infra/
+        run: |
+          docker run --rm \
+            -v "${{ github.workspace }}:/work" \
+            ghcr.io/aquasecurity/trivy:latest config \
+            --format table \
+            --output /work/trivy-iac-report.txt \
+            --severity CRITICAL,HIGH,MEDIUM,LOW \
+            --exit-code 0 \
+            /work/infra
+
+      - name: Print Trivy IaC report in logs
+        run: cat trivy-iac-report.txt
+
+      - name: Upload Trivy IaC report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: trivy-iac-report
+          path: trivy-iac-report.txt

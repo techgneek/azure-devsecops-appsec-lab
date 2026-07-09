@@ -25,3 +25,7 @@ OWASP Top 10 is similar to vulnerability categories for application security. In
 ## Interview-Friendly Explanation
 
 If I were explaining this in an interview, I would say that OWASP Top 10 is the app security version of the risk categories I already know from vulnerability management. The difference is that instead of servers and network devices, I am looking at code paths, APIs, dependencies, secrets, and authorization boundaries.
+
+## Additional Framework Mapping
+
+OWASP is the primary AppSec category mapping for this lab. A broader secure SDLC and NIST-style mapping is available in `reports/secure-sdlc-nist-mapping.md`.

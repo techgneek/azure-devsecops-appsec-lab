@@ -10,7 +10,7 @@ Scanning before apply helps prevent risky configurations from reaching Azure env
 
 ## Common IaC Risks
 
-Checkov commonly detects risks such as:
+Checkov and Trivy commonly detect risks such as:
 
 - missing encryption settings
 - overly permissive network exposure
@@ -33,7 +33,7 @@ IaC findings can be handled with the same lifecycle used for vulnerability manag
 IaC remediation should be validated by:
 
 1. updating Terraform code
-2. re-running Checkov against `infra/`
+2. re-running Checkov and Trivy against `infra/`
 3. verifying findings are reduced or closed
 4. documenting closure evidence in reports/workflow artifacts
 
@@ -41,6 +41,7 @@ IaC remediation should be validated by:
 
 ```bash
 checkov -d infra
+trivy config infra
 ```
 
 ## GitHub Actions Workflow
@@ -48,5 +49,6 @@ checkov -d infra
 This repository includes a manually runnable workflow:
 
 - `.github/workflows/checkov-iac-scan.yml`
+- `.github/workflows/trivy-iac-scan.yml`
 
-The workflow scans only `infra/` and uploads scan output as an artifact.
+The workflows scan only `infra/` and upload scan output as artifacts.
