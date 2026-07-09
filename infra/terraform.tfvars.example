@@ -1,0 +1,14 @@
+location = "eastus"
+
+project_name = "appsec-lab"
+
+resource_group_name_prefix = "rg-appsec-lab"
+app_service_plan_name_prefix = "asp-appsec-lab"
+web_app_name_prefix = "appsec-lab-web"
+
+tags = {
+  project     = "appsec-crash-lab"
+  owner       = "james"
+  purpose     = "interview-prep"
+  environment = "lab"
+}

@@ -1,0 +1,66 @@
+name: OWASP ZAP Baseline
+
+on:
+  workflow_dispatch:
+    inputs:
+      target_url:
+        description: "Azure App Service URL for the lab only"
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+# Warning: run this workflow only against the Azure App Service deployed by this lab.
+# Do not point it at third-party systems or any target you do not own or have permission to test.
+
+jobs:
+  zap-baseline:
+    runs-on: ubuntu-latest
+
+    env:
+      ZAP_TARGET_URL_INPUT: ${{ inputs.target_url }}
+      ZAP_TARGET_URL_VAR: ${{ vars.ZAP_TARGET_URL }}
+      ZAP_TARGET_URL_SECRET: ${{ secrets.ZAP_TARGET_URL }}
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Validate target URL is set
+        run: |
+          TARGET_URL="$ZAP_TARGET_URL_INPUT"
+
+          if [ -z "$TARGET_URL" ]; then
+            TARGET_URL="$ZAP_TARGET_URL_VAR"
+          fi
+
+          if [ -z "$TARGET_URL" ]; then
+            TARGET_URL="$ZAP_TARGET_URL_SECRET"
+          fi
+
+          if [ -z "$TARGET_URL" ]; then
+            echo "Set workflow_dispatch input target_url or configure vars.ZAP_TARGET_URL / secrets.ZAP_TARGET_URL."
+            exit 1
+          fi
+
+          echo "TARGET_URL=$TARGET_URL" >> "$GITHUB_ENV"
+
+      - name: Run ZAP baseline scan
+        run: |
+          docker run --rm \
+            -v "${{ github.workspace }}:/zap/wrk/:rw" \
+            ghcr.io/zaproxy/zaproxy:stable \
+            zap-baseline.py \
+            -t "$TARGET_URL" \
+            -r zap-baseline-report.html \
+            -J zap-baseline-report.json \
+            -I
+
+      - name: Upload ZAP report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: zap-baseline-report
+          path: |
+            zap-baseline-report.html
+            zap-baseline-report.json

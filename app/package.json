@@ -1,0 +1,25 @@
+{
+  "name": "azure-devsecops-appsec-lab",
+  "version": "1.0.0",
+  "description": "Intentionally vulnerable training app for Azure DevSecOps and AppSec interview prep.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "node --test"
+  },
+  "keywords": [
+    "appsec",
+    "devsecops",
+    "azure",
+    "training"
+  ],
+  "author": "",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "supertest": "^7.1.4"
+  }
+}

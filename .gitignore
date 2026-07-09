@@ -1,0 +1,12 @@
+# Terraform
+infra/.terraform/
+infra/terraform.tfstate
+infra/terraform.tfstate.backup
+infra/terraform.tfvars
+
+# Node
+app/node_modules/
+
+# OS / editor
+.DS_Store
+.vscode/
