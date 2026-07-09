@@ -8,7 +8,7 @@ This project simulates the implementation of a lightweight Application Security 
 
 ---
 
-<img width="1000" alt="Architecture at a glance" src="screenshots/architecture-thumbnail.svg">
+<img width="1000" alt="Architecture at a glance" src="screenshots/architecture-thumbnail-v2.png">
 
 ---
 
@@ -316,7 +316,3 @@ This is an intentionally vulnerable personal training environment. Do not scan o
 - Add before-and-after remediation evidence for each open finding.
 - Add trend tracking across scan cycles to show reduction over time.
 - Add defined SLA targets by severity for simulated AppSec operations.
-
-## Interview Framing
-
-If I describe this project in an interview, I frame it as an AppSec vulnerability management program simulation, not just a vulnerable app lab. The value is the full operational loop: discovery, triage, ownership, remediation, and evidence-based closure.
