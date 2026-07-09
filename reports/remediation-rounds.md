@@ -39,6 +39,12 @@ curl -sS http://localhost:3000/headers
 - Browser capture of `/headers` showing improved header posture and reduced/empty missing header list.
 - Expected screenshot file: `screenshots/after-security-headers.png`.
 
+### Evidence Status
+
+- Completed:
+	- `screenshots/before-security-headers.png`
+	- `screenshots/after-security-headers.png`
+
 ### Interview Explanation
 
 This remediation demonstrates OWASP Security Misconfiguration hardening by moving from missing browser controls to a documented baseline. It also shows the operational loop: finding, fix implementation, route re-test, and evidence capture.
@@ -81,6 +87,12 @@ curl -sS http://localhost:3000/api/orders/1001
 
 - Browser/API capture of `/api/orders/1001` showing minimized order data with no internal fields.
 - Expected screenshot file: `screenshots/after-api-data-exposure.png`.
+
+### Evidence Status
+
+- Completed:
+	- `screenshots/before-api-data-exposure.png`
+	- `screenshots/after-api-data-exposure.png`
 
 ### Interview Explanation
 
