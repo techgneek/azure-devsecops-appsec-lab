@@ -1,0 +1,33 @@
+name: Checkov IaC Scan
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  checkov-iac-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Checkov
+        run: pip install checkov
+
+      - name: Run Checkov against Terraform in infra/
+        run: |
+          checkov -d infra --framework terraform --output cli --soft-fail | tee checkov-report.txt
+
+      - name: Upload Checkov report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkov-iac-report
+          path: checkov-report.txt
