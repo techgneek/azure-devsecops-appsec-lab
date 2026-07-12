@@ -39,12 +39,12 @@ This project simulates the implementation of a lightweight Application Security 
 - [Build and Deployment Flow](#build-and-deployment-flow)
 - [Security Testing Coverage](#security-testing-coverage)
 - [Application Risk Scenarios](#application-risk-scenarios)
-- [Findings, Risk Mapping, and Ownership](#findings-risk-mapping-and-ownership)
+- [Finding Intake, Risk Mapping, and Ownership](#finding-intake-risk-mapping-and-ownership)
 - [Remediation and Validation Proof](#remediation-and-validation-proof)
 - [Secure SDLC Alignment](#secure-sdlc-alignment)
 - [Program Outcome](#program-outcome)
-- [What I Would Improve Next](#what-i-would-improve-next)
 - [Supporting Documentation](#supporting-documentation)
+- [What I Would Improve Next](#what-i-would-improve-next)
 
 ---
 
@@ -246,13 +246,13 @@ This lab maps to secure SDLC phases in practical terms:
 
 ## Program Outcome
 
-This project established a complete AppSec vulnerability management workflow in a controlled Azure lab environment.
+This project demonstrates an end-to-end AppSec vulnerability management workflow in a controlled Azure lab environment.
 
 | Outcome | Result |
 | --- | --- |
 | Cloud infrastructure | Azure App Service environment provisioned with Terraform |
 | Application target | Intentionally vulnerable Node.js app deployed for safe AppSec testing |
-| Scanning layers | SAST, DAST, SCA-style dependency monitoring, and secrets scanning represented |
+| Scanning layers | SAST, DAST, SCA, secrets scanning, container scanning, and IaC scanning represented |
 | Findings documented | 7 AppSec findings captured in a triage report |
 | OWASP mapping | Findings mapped to common OWASP Top 10 categories |
 | Remediation plan | Findings prioritized by exposure, exploitability, and business risk |
@@ -287,6 +287,6 @@ Use the files below for setup details, report depth, and remediation evidence:
 - Add deeper authentication and authorization workflows.
 - Add API schema testing and rate-limit testing.
 - Expand secure coding examples with before/after pull requests.
-- Map findings to additional frameworks such as NIST SSDF, NIST CSF, and CIS Controls.
+- Expand framework mapping with more specific NIST SSDF, NIST CSF, and CIS Controls references.
 - Add trend tracking across scan cycles to show reduction over time.
 - Add defined SLA targets by severity for simulated AppSec operations.
