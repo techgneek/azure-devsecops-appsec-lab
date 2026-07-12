@@ -93,8 +93,7 @@ Detailed setup commands and local run instructions are kept in `LAB-GUIDE.md` an
 
 | Scan Evidence | Why It Matters |
 | --- | --- |
-| ![CodeQL analysis run](screenshots/codeql-workflow.png) | Shows code scanning attached to the repository. |
-| ![Secrets scan terminal output](screenshots/secrets-scan-terminal.png) | Shows the lab detecting and validating a secrets exposure scenario. |
+| ![Security testing workflow evidence](screenshots/security-testing-coverage-evidence.png) | Shows security workflows are correctly configured and executed in CI, with successful run status across the scanning stack used in this lab. |
 
 This is where the lab shifts from being a vulnerable app to being an AppSec workflow. The scans create signals, and the reports turn those signals into prioritized remediation work.
 
