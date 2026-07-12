@@ -36,7 +36,7 @@ test('GET /debug returns the training placeholder', async () => {
   assert.equal(response.body.fakeSecret, 'REDACTED_FOR_TRAINING');
 });
 
-test('GET /api/orders/1001 returns intentionally vulnerable order data', async () => {
+test('GET /api/orders/1001 returns remediated minimal order data', async () => {
   const app = createApp();
   const response = await request(app).get('/api/orders/1001');
 
@@ -45,8 +45,9 @@ test('GET /api/orders/1001 returns intentionally vulnerable order data', async (
   assert.equal(response.body.order.customerName, 'Sample Customer');
   assert.equal(response.body.order.total, 149.99);
   assert.ok(Array.isArray(response.body.order.items));
-  assert.equal(response.body.order.internalNotes, 'Sensitive internal note visible in the vulnerable response.');
-  assert.equal(response.body.order.paymentTokenLast4, '4242');
+  assert.equal(response.body.order.internalNotes, undefined);
+  assert.equal(response.body.order.paymentTokenLast4, undefined);
+  assert.equal(response.body.note, 'Response minimized to required client fields only.');
 });
 
 test('GET /headers reports missing baseline security headers in vulnerable mode', async () => {

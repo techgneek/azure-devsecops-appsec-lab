@@ -191,24 +191,23 @@ For the complete set of findings and full vulnerability coverage, see:
 
 ## Remediation and Validation Proof
 
-This section shows the two primary remediation rounds and their validation outcomes.
+This section shows one complete remediation cycle for AF-004, from before evidence through after-fix validation.
 
 | Finding | Before | After | Validation |
 | --- | --- | --- | --- |
-| AF-001 Security Headers | Missing baseline security headers | Hardened header set | Re-tested `/headers` and captured after evidence |
-| AF-004 API Data Exposure | API returned internal fields | Response minimized to required fields | Re-tested `/api/orders/1001` and captured after evidence |
-
-### AF-001 Security Headers Before/After
-
-| Before | After |
-| --- | --- |
-| ![Before security headers remediation](screenshots/before-security-headers.png) | ![After security headers remediation](screenshots/after-security-headers.png) |
+| AF-004 API Data Exposure | API returned internal fields (`internalNotes`, `paymentTokenLast4`) | Response minimized to required fields only (`id`, `customerName`, `total`, `items`) | Re-tested `/api/orders/1001` and re-ran security validation workflow evidence |
 
 ### AF-004 API Data Exposure Before/After
 
 | Before | After |
 | --- | --- |
 | ![Before API data exposure remediation](screenshots/before-api-data-exposure.png) | ![After API data exposure remediation](screenshots/after-api-data-exposure.png) |
+
+### AF-004 Validation Scan Evidence
+
+| Validation Scan Evidence | Why It Matters |
+| --- | --- |
+| ![AF-004 validation scan evidence](screenshots/security-testing-coverage-evidence.png) | Captures the security validation workflow used to verify post-remediation API behavior after response minimization. |
 
 ---
 

@@ -28,11 +28,15 @@ router.get('/:id', (req, res) => {
     return res.status(404).json({ error: 'Order not found' });
   }
 
-  // Training mode: intentionally return the full object to demonstrate
-  // excessive data exposure before remediation.
+  // Remediated response: only expose fields required by client consumers.
   res.json({
-    order,
-    note: 'This endpoint is intentionally vulnerable for training purposes only.',
+    order: {
+      id: order.id,
+      customerName: order.customerName,
+      total: order.total,
+      items: order.items,
+    },
+    note: 'Response minimized to required client fields only.',
   });
 });
 
