@@ -142,23 +142,28 @@ The point is not to exploit anything. The point is to show how a security analys
 
 ## Findings, Risk Mapping, and Ownership
 
-This section summarizes how findings are documented, mapped, and handed off for remediation.
+This section uses one worked example to show the full AppSec triage-to-remediation chain.
 
-Each finding is tracked with:
+### Worked Example: AF-004 Excessive API Data Exposure
 
-- finding ID
-- tool or evidence source
-- severity
-- OWASP category
-- business risk
-- recommended fix
-- owner
-- status
-- validation step
+| Stage | AF-004 Evidence |
+| --- | --- |
+| Finding record | `reports/appsec-findings-report.md` documents AF-004 as excessive data exposure on `/api/orders/:id`, including severity, business risk, owner, and validation evidence references. |
+| OWASP mapping | `reports/owasp-top-10-mapping.md` maps excessive API data exposure to **Broken Access Control** because the API returns data beyond intended caller need. |
+| Remediation prioritization | `reports/remediation-plan.md` tracks AF-004 as **P1**, with validation based on response minimization evidence and route re-testing. |
+| Secure SDLC / NIST context | `reports/secure-sdlc-nist-mapping.md` maps the AF-004 workflow activities to triage governance, remediation planning, and evidence-based closure within secure SDLC operations. |
 
-Issue-style handoff templates in `issues/` are used to simulate developer ownership and remediation workflow.
+### AF-004 Ownership Snapshot
 
-Detailed tracking and mapping are maintained in:
+- Finding ID: AF-004
+- Owner: API owner
+- Risk: excessive API response data exposure
+- Documented status in report: Closed
+- Validation reference: before/after evidence for `/api/orders/1001` in `screenshots/`
+
+### Full Vulnerability Reports
+
+For the complete set of findings and full vulnerability coverage, see:
 
 - `reports/appsec-findings-report.md`
 - `reports/owasp-top-10-mapping.md`
