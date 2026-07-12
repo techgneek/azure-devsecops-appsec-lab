@@ -7,7 +7,7 @@ variable "project_name" {
 variable "location" {
   description = "Azure region where the lab resources will be deployed."
   type        = string
-  default     = "eastus"
+  default     = "westus2"
 }
 
 variable "resource_group_name_prefix" {
@@ -37,4 +37,10 @@ variable "tags" {
     purpose     = "interview-prep"
     environment = "lab"
   }
+}
+
+variable "pause_lab" {
+  description = "When true, disables the Web App (pause mode) without destroying resources."
+  type        = bool
+  default     = false
 }
