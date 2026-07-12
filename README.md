@@ -217,6 +217,19 @@ Remediation actions follow the AF-004 ticket recommendations in `issues/AF-004-e
 | --- | --- |
 | ![AF-004 validation scan evidence](screenshots/af004-zap-validation-evidence.png) | Shows OWASP ZAP Baseline completed successfully after remediation to support closure evidence for AF-004. |
 
+### Enterprise Change-Control Workflow (Real Environment)
+
+In a production enterprise setting, a high-severity finding like AF-004 would normally follow formal change-control and separation-of-duties steps before closure.
+
+| Enterprise Step | Typical Owner | Governance Outcome |
+| --- | --- | --- |
+| Security triage confirms severity and remediation requirement | AppSec / Vulnerability Management | Finding is risk-ranked and prepared for formal change submission |
+| Change request is submitted and approved through change management (for example CAB) | Service owner / Engineering manager | Production implementation is authorized with scope, timing, and rollback expectations |
+| Assigned engineer implements the approved remediation | API owner / Application developer | Approved fix is deployed in the defined change window |
+| Vulnerability management performs independent re-test and evidence review | Vulnerability Management / AppSec | Closure is based on validation evidence, not implementation claim alone |
+| Ticket status is updated to closed with linked proof artifacts | Finding owner + reviewer | Audit-ready traceability from finding to verified remediation |
+| Post-closure lessons learned and analyst notes are documented | Vulnerability Management + AppSec + Engineering | Reusable knowledge is captured so similar findings are triaged and remediated faster in future cycles |
+
 ---
 
 ## Secure SDLC Alignment

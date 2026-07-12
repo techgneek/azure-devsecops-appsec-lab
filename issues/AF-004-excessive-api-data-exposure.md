@@ -52,3 +52,10 @@ Over-shared API responses increase the blast radius of unauthorized access and c
 - Before evidence: `screenshots/af004-before-api-response-evidence.png`
 - After evidence: `screenshots/af004-after-api-response-evidence.png`
 - Validation evidence: `screenshots/af004-zap-validation-evidence.png`
+
+## Lessons Learned / Analyst Notes
+
+- Closure should occur only after independent validation confirms internal fields are removed from the live response.
+- Response-minimization fixes should be paired with automated contract tests so regression is detected during CI.
+- Keep evidence links in the ticket current (before, after, and validation scan) to support audit and faster future triage.
+- For similar findings, start by reviewing this ticket's fix pattern: minimize payload to business-required fields, then validate with endpoint re-test and scan evidence.
