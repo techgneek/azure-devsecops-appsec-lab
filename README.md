@@ -33,10 +33,9 @@ This project simulates the implementation of a lightweight Application Security 
 
 ## Table of Contents
 
-- [Project Summary](#project-summary)
+- [AppSec Lifecycle](#appsec-lifecycle)
 - [Architecture at a Glance](#architecture-at-a-glance)
 - [Technology Stack](#technology-stack)
-- [AppSec Vulnerability Management Workflow](#appsec-vulnerability-management-workflow)
 - [Build and Deployment Flow](#build-and-deployment-flow)
 - [Security Testing Coverage](#security-testing-coverage)
 - [Secure SDLC Alignment](#secure-sdlc-alignment)
@@ -49,34 +48,16 @@ This project simulates the implementation of a lightweight Application Security 
 
 ---
 
-## Project Summary
-
-The goal of this project is to show how enterprise vulnerability management concepts translate into application security.
-
-In traditional vulnerability management, the focus is usually on servers, endpoints, CVEs, scanner output, remediation owners, and validation. In AppSec, the same lifecycle still applies, but the assets shift to applications, APIs, source code, dependencies, secrets, containers, and CI/CD pipelines.
-
-This lab demonstrates that lifecycle:
-
-1. Build a controlled application environment.
-2. Identify application security weaknesses.
-3. Collect evidence through manual review and scanning workflows.
-4. Map findings to OWASP Top 10.
-5. Prioritize based on exposure, exploitability, and business risk.
-6. Assign remediation actions to the correct owner.
-7. Validate closure through re-testing.
-
----
-
-## AppSec Vulnerability Management Workflow
+## AppSec Lifecycle
 
 This project uses one repeatable lifecycle for handling application security findings:
 
 1. Identify application risk.
 2. Validate that the finding is real.
-3. Map it to OWASP and secure SDLC concepts.
+3. Map to OWASP and secure SDLC concepts.
 4. Prioritize based on exposure, exploitability, and business impact.
 5. Assign remediation ownership.
-6. Fix the issue.
+6. Remediate (fix the issue).
 7. Re-test and capture closure evidence.
 
 ---

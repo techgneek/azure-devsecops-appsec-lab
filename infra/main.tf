@@ -40,6 +40,7 @@ resource "azurerm_linux_web_app" "lab" {
   resource_group_name = azurerm_resource_group.lab.name
   location            = azurerm_resource_group.lab.location
   service_plan_id     = azurerm_service_plan.lab.id
+  enabled             = !var.pause_lab
   https_only          = true
   tags                = local.merged_tags
 
