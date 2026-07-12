@@ -38,10 +38,10 @@ This project simulates the implementation of a lightweight Application Security 
 - [Technology Stack](#technology-stack)
 - [Build and Deployment Flow](#build-and-deployment-flow)
 - [Security Testing Coverage](#security-testing-coverage)
-- [Secure SDLC Alignment](#secure-sdlc-alignment)
 - [Application Risk Scenarios](#application-risk-scenarios)
 - [Findings, Risk Mapping, and Ownership](#findings-risk-mapping-and-ownership)
 - [Remediation and Validation Proof](#remediation-and-validation-proof)
+- [Secure SDLC Alignment](#secure-sdlc-alignment)
 - [Program Outcome](#program-outcome)
 - [What I Would Improve Next](#what-i-would-improve-next)
 - [Supporting Documentation](#supporting-documentation)
@@ -80,22 +80,6 @@ Detailed setup commands and local run instructions are kept in `LAB-GUIDE.md` an
 
 ---
 
-## Application Risk Scenarios
-
-The app contains routes that demonstrate common application security concerns in a safe, controlled way.
-
-| Route | Screenshot | AppSec Concept |
-| --- | --- | --- |
-| `/` | ![Home page route list](screenshots/home-route1.png) | Lab landing page and route map |
-| `/profile?id=1` | ![Profile endpoint response](screenshots/profile-route.png) | Broken access control / IDOR-style behavior |
-| `/debug` | ![Debug endpoint response](screenshots/debug-route.png) | Debug exposure and secret-handling risk |
-| `/api/orders/:id` | ![Orders API response](screenshots/orders-route.png) | Excessive data exposure in API responses |
-| `/headers` | ![Header route response](screenshots/header-route.png) | Missing browser security headers |
-
-The point is not to exploit anything. The point is to show how a security analyst can observe application behavior, identify risk patterns, collect evidence, and translate the issue into remediation guidance.
-
----
-
 ## Security Testing Coverage
 
 | Security Area | Tool | What It Shows |
@@ -114,15 +98,21 @@ The point is not to exploit anything. The point is to show how a security analys
 
 This is where the lab shifts from being a vulnerable app to being an AppSec workflow. The scans create signals, and the reports turn those signals into prioritized remediation work.
 
-## Secure SDLC Alignment
+---
 
-This lab maps to secure SDLC phases in practical terms:
+## Application Risk Scenarios
 
-- **Design:** define AppSec workflow, risk triage method, and OWASP mapping.
-- **Build:** implement Terraform infrastructure and application code changes.
-- **Test:** run SAST, DAST, SCA, secrets scanning, container scanning, and IaC scanning.
-- **Release:** deploy through a CI/CD workflow in GitHub Actions.
-- **Operate:** track findings, assign owners, prioritize remediation, and validate closure with evidence.
+The app contains routes that demonstrate common application security concerns in a safe, controlled way.
+
+| Route | Screenshot | AppSec Concept |
+| --- | --- | --- |
+| `/` | ![Home page route list](screenshots/home-route1.png) | Lab landing page and route map |
+| `/profile?id=1` | ![Profile endpoint response](screenshots/profile-route.png) | Broken access control / IDOR-style behavior |
+| `/debug` | ![Debug endpoint response](screenshots/debug-route.png) | Debug exposure and secret-handling risk |
+| `/api/orders/:id` | ![Orders API response](screenshots/orders-route.png) | Excessive data exposure in API responses |
+| `/headers` | ![Header route response](screenshots/header-route.png) | Missing browser security headers |
+
+The point is not to exploit anything. The point is to show how a security analyst can observe application behavior, identify risk patterns, collect evidence, and translate the issue into remediation guidance.
 
 ---
 
@@ -177,6 +167,18 @@ This section shows the two primary remediation rounds and their validation outco
 
 ---
 
+## Secure SDLC Alignment
+
+This lab maps to secure SDLC phases in practical terms:
+
+- **Design:** define AppSec workflow, risk triage method, and OWASP mapping.
+- **Build:** implement Terraform infrastructure and application code changes.
+- **Test:** run SAST, DAST, SCA, secrets scanning, container scanning, and IaC scanning.
+- **Release:** deploy through a CI/CD workflow in GitHub Actions.
+- **Operate:** track findings, assign owners, prioritize remediation, and validate closure with evidence.
+
+---
+
 ## Program Outcome
 
 This project established a complete AppSec vulnerability management workflow in a controlled Azure lab environment.
@@ -193,15 +195,7 @@ This project established a complete AppSec vulnerability management workflow in 
 
 The strongest takeaway is that AppSec is not disconnected from vulnerability management. The workflow is familiar: identify, validate, prioritize, assign ownership, remediate, and re-test.
 
----
-
-### Live Demo Flow
-
-1. Open the architecture image and explain inception versus completion state.
-2. Show deployment evidence and route-level risk scenarios.
-3. Walk through scan evidence from CodeQL and secrets scanning.
-4. Move to triage, OWASP mapping, and remediation plan artifacts.
-5. Close with validation examples and outcome summary.
+As a final summary, this project demonstrates an end-to-end AppSec vulnerability management workflow in a controlled Azure lab. It combines infrastructure provisioning, CI/CD-integrated scanning, OWASP-based categorization, remediation ownership, and evidence-based validation to show how findings move from detection to closure.
 
 ## Supporting Documentation
 
@@ -231,7 +225,3 @@ Use the files below for setup details, report depth, and remediation evidence:
 - Map findings to additional frameworks such as NIST SSDF, NIST CSF, and CIS Controls.
 - Add trend tracking across scan cycles to show reduction over time.
 - Add defined SLA targets by severity for simulated AppSec operations.
-
-### Project Summary
-
-This project demonstrates an end-to-end AppSec vulnerability management workflow in a controlled Azure lab. It combines infrastructure provisioning, CI/CD-integrated scanning, OWASP-based categorization, remediation ownership, and evidence-based validation to show how findings move from detection to closure.
