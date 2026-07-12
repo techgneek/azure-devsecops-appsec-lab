@@ -192,6 +192,7 @@ For the complete set of findings and full vulnerability coverage, see:
 ## Remediation and Validation Proof
 
 This section shows one complete remediation cycle for AF-004, from before evidence through after-fix validation.
+Remediation actions follow the AF-004 ticket recommendations in `issues/AF-004-excessive-api-data-exposure.md`: return only required consumer fields, remove internal-only fields, and validate with automated tests plus post-fix scanning.
 
 | Finding | Before | After | Validation |
 | --- | --- | --- | --- |
@@ -201,13 +202,20 @@ This section shows one complete remediation cycle for AF-004, from before eviden
 
 | Before | After |
 | --- | --- |
-| ![Before API data exposure remediation](screenshots/before-api-data-exposure.png) | ![After API data exposure remediation](screenshots/after-api-data-exposure.png) |
+| ![Before API data exposure remediation](screenshots/before-api-data-exposure.png) | ![After API data exposure remediation](screenshots/af004-after-api-response-evidence.png) |
+
+### AF-004 Remediation Implementation Evidence
+
+| Implementation Evidence | Why It Matters |
+| --- | --- |
+| ![AF-004 API route remediation code](screenshots/af004-remediation-code-evidence.png) | Shows the API response was explicitly minimized to `id`, `customerName`, `total`, and `items` per ticket guidance. |
+| ![AF-004 response contract test evidence](screenshots/af004-remediation-tests-evidence.png) | Confirms automated tests enforce that `internalNotes` and `paymentTokenLast4` are no longer exposed. |
 
 ### AF-004 Validation Scan Evidence
 
 | Validation Scan Evidence | Why It Matters |
 | --- | --- |
-| ![AF-004 validation scan evidence](screenshots/security-testing-coverage-evidence.png) | Captures the security validation workflow used to verify post-remediation API behavior after response minimization. |
+| ![AF-004 validation scan evidence](screenshots/af004-zap-validation-evidence.png) | Shows OWASP ZAP Baseline completed successfully after remediation to support closure evidence for AF-004. |
 
 ---
 
