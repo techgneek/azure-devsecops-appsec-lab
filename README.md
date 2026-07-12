@@ -202,7 +202,7 @@ Remediation actions follow the AF-004 ticket recommendations in `issues/AF-004-e
 
 | Before | After |
 | --- | --- |
-| ![Before API data exposure remediation](screenshots/before-api-data-exposure.png) | ![After API data exposure remediation](screenshots/af004-after-api-response-evidence.png) |
+| ![Before API data exposure remediation](screenshots/af004-before-api-response-evidence.png) | ![After API data exposure remediation](screenshots/af004-after-api-response-evidence.png) |
 
 ### AF-004 Remediation Implementation Evidence
 
