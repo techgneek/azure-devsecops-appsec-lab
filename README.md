@@ -108,7 +108,7 @@ The app contains routes that demonstrate common application security concerns in
 | `/` | ![Home page route list](screenshots/home-route1.png) | Lab landing page and route map |
 | `/profile?id=1` | ![Profile endpoint response id=1](screenshots/profile-id-1-evidence.png) | Broken access control / IDOR-style behavior |
 | `/profile?id=2` | ![Profile endpoint response id=2](screenshots/profile-id-2-evidence.png) | Direct object reference returns a different profile without object-level authorization enforcement |
-| `/debug` | ![Debug endpoint response](screenshots/debug-route.png) | Debug exposure and secret-handling risk |
+| `/debug` | ![Debug endpoint response evidence](screenshots/debug-route-evidence.png) | Debug exposure and secret-handling risk |
 | `/api/orders/:id` | ![Orders API response](screenshots/orders-route.png) | Excessive data exposure in API responses |
 | `/headers` | ![Header route response](screenshots/header-route.png) | Missing browser security headers |
 
@@ -119,6 +119,12 @@ The point is not to exploit anything. The point is to show how a security analys
 - Before signal: profile data is returned for direct identifier input without an ownership validation check in the request flow.
 - Risk meaning: this reflects an IDOR-style broken access control pattern where object access is not constrained to the requesting identity.
 - Expected control outcome: enforce server-side authorization checks so profile objects are only returned to permitted users.
+
+### Before Evidence: Debug Exposure (`/debug`)
+
+- Before signal: the debug route returns internal application/runtime details that are not required for normal user-facing behavior.
+- Risk meaning: this is an information disclosure pattern that improves attacker reconnaissance and reduces uncertainty for follow-on attacks.
+- Expected control outcome: disable debug endpoints in production paths and restrict internal diagnostics to authenticated/authorized administrative channels.
 
 ---
 
