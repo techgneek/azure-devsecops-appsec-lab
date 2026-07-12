@@ -140,19 +140,9 @@ The point is not to exploit anything. The point is to show how a security analys
 
 ---
 
-## Findings, Risk Mapping, and Ownership
+## Finding Intake, Risk Mapping, and Ownership
 
-This section uses one worked example to show the full AppSec triage-to-remediation chain.
-
-### Worked Example: AF-004 Excessive API Data Exposure
-
-| Stage | AF-004 Evidence |
-| --- | --- |
-| Finding record | `reports/appsec-findings-report.md` documents AF-004 as excessive data exposure on `/api/orders/:id`, including severity, business risk, owner, and validation evidence references. |
-| Issue ticket | `issues/AF-004-excessive-api-data-exposure.md` tracks AF-004 ownership, remediation notes, and closure evidence in ticket format. |
-| OWASP mapping | `reports/owasp-top-10-mapping.md` maps excessive API data exposure to **Broken Access Control** because the API returns data beyond intended caller need. |
-| Remediation prioritization | `reports/remediation-plan.md` tracks AF-004 as **P1**, with validation based on response minimization evidence and route re-testing. |
-| Secure SDLC / NIST context | `reports/secure-sdlc-nist-mapping.md` maps the AF-004 workflow activities to triage governance, remediation planning, and evidence-based closure within secure SDLC operations. |
+This section focuses on discovery-phase analysis using one ticket, before moving into remediation.
 
 ### AF-004 Ticket Walkthrough (Full Process)
 
@@ -160,22 +150,31 @@ Ticket source: `issues/AF-004-excessive-api-data-exposure.md`
 
 | Ticket Phase | AF-004 Ticket Detail |
 | --- | --- |
-| Identification | Finding ID AF-004, excessive data exposure on `GET /api/orders/:id` |
-| Ownership and priority | Suggested owner: API owner, Priority: P1 |
-| Problem statement | Public response included internal-only fields (for example `internalNotes`, `paymentTokenLast4`) not required by clients |
-| OWASP linkage | Mapped to OWASP A01 Broken Access Control (data exposure impact) |
-| Risk statement | Over-shared payloads increase blast radius and leak internal operational/payment-adjacent data |
-| Recommended remediation | Minimize response to required fields only; remove internal fields from public payloads; add response schema tests |
-| Validation plan | Capture before payload, apply minimization fix, capture after payload, then update finding status with evidence |
-| Definition of done | Internal fields removed from public response, tests validate contract shape, finding updated with closure evidence |
+| Identification | **Finding ID: AF-004** on **`GET /api/orders/:id`** with excessive data exposure |
+| Ownership and priority | Suggested owner: **API owner**, Priority: **P1** |
+| Problem statement | Public response included **internal-only fields** (for example `internalNotes`, `paymentTokenLast4`) not required by clients |
+| OWASP linkage | Mapped to **OWASP A01: Broken Access Control** (data exposure impact) |
+| Risk statement | **Over-shared payloads increase blast radius** and leak internal operational/payment-adjacent data |
+| Recommended remediation | **Minimize response to required fields only**; remove internal fields from public payloads; add response schema tests |
+| Validation plan | Capture **before payload**, apply minimization fix, capture **after payload**, then update finding status with evidence |
+| Definition of done | **Internal fields removed** from public response, tests validate contract shape, finding updated with closure evidence |
+
+### AF-004 Risk and Control Mapping
+
+| Mapping Area | AF-004 Context |
+| --- | --- |
+| OWASP mapping | `reports/owasp-top-10-mapping.md` maps AF-004 to **OWASP A01: Broken Access Control** because the API returns data beyond intended caller need. |
+| Secure SDLC / NIST context | `reports/secure-sdlc-nist-mapping.md` maps AF-004 activities to **triage governance, remediation planning, and evidence-based closure** within secure SDLC operations. |
+| Findings report linkage | `reports/appsec-findings-report.md` records **severity, business risk, owner, and validation references** for AF-004. |
 
 ### AF-004 Ownership Snapshot
 
 - Finding ID: AF-004
-- Owner: API owner
-- Risk: excessive API response data exposure
+- Owner: **API owner**
+- Risk: **excessive API response data exposure**
 - Ticket: `issues/AF-004-excessive-api-data-exposure.md`
-- Documented status in report: Closed
+- Priority: **P1**
+- Discovery-phase handoff: ticket prepared for **remediation planning and implementation** in the next section.
 - Validation reference: before/after evidence for `/api/orders/1001` in `screenshots/`
 
 ### Full Vulnerability Reports
