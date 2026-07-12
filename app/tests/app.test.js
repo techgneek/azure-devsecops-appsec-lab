@@ -49,16 +49,16 @@ test('GET /api/orders/1001 returns intentionally vulnerable order data', async (
   assert.equal(response.body.order.paymentTokenLast4, '4242');
 });
 
-test('GET /headers reports a hardened security header baseline', async () => {
+test('GET /headers reports missing baseline security headers in vulnerable mode', async () => {
   const app = createApp();
   const response = await request(app).get('/headers');
 
   assert.equal(response.statusCode, 200);
   assert.ok(Array.isArray(response.body.missingSecurityHeaders));
-  assert.equal(response.body.missingSecurityHeaders.length, 0);
-  assert.equal(response.body.responseSecurityHeaders['x-frame-options'], 'SAMEORIGIN');
-  assert.equal(response.body.responseSecurityHeaders['x-content-type-options'], 'nosniff');
-  assert.equal(response.body.responseSecurityHeaders['referrer-policy'], 'no-referrer');
-  assert.match(response.body.responseSecurityHeaders['content-security-policy'], /default-src 'self'/);
-  assert.match(response.body.responseSecurityHeaders['permissions-policy'], /geolocation=\(\)/);
+  assert.ok(response.body.missingSecurityHeaders.length > 0);
+  assert.equal(response.body.responseSecurityHeaders['x-frame-options'], null);
+  assert.equal(response.body.responseSecurityHeaders['x-content-type-options'], null);
+  assert.equal(response.body.responseSecurityHeaders['referrer-policy'], null);
+  assert.equal(response.body.responseSecurityHeaders['content-security-policy'], null);
+  assert.equal(response.body.responseSecurityHeaders['permissions-policy'], null);
 });
