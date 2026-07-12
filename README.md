@@ -118,21 +118,25 @@ The point is not to exploit anything. The point is to show how a security analys
 
 - Before signal: profile data is returned for direct identifier input without an ownership validation check in the request flow.
 - Risk meaning: this reflects an IDOR-style broken access control pattern where object access is not constrained to the requesting identity.
+- Significance: a user should never be able to change only a profile identifier and retrieve another analyst's account data.
 
 ### Before Evidence: Debug Exposure (`/debug`)
 
 - Before signal: the debug route returns internal application/runtime details that are not required for normal user-facing behavior.
 - Risk meaning: this is an information disclosure pattern that improves attacker reconnaissance and reduces uncertainty for follow-on attacks.
+- Significance: publicly accessible debug data lowers attacker effort by revealing internal context that should stay restricted.
 
 ### Before Evidence: API Data Exposure (`/api/orders/:id`)
 
 - Before signal: the orders API response includes internal order attributes beyond what a consumer-facing client requires.
 - Risk meaning: this is an excessive data exposure pattern where unnecessary fields increase data leakage risk and downstream misuse potential.
+- Significance: exposing internal-only fields increases the chance of sensitive business and payment-adjacent data being reused outside intended workflows.
 
 ### Before Evidence: Missing Security Headers (`/headers`)
 
 - Before signal: browser-facing security headers are absent or incomplete in HTTP responses.
 - Risk meaning: this weakens baseline client-side protections and increases exposure to common browser-mediated attack classes.
+- Significance: missing baseline headers removes built-in browser safeguards that help limit framing, content-type abuse, and unsafe content execution.
 
 ---
 
