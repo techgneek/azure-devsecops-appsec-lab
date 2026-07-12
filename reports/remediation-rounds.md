@@ -54,7 +54,7 @@ This remediation demonstrates OWASP Security Misconfiguration hardening by movin
 ### Before Evidence Needed
 
 - Browser/API capture of `/api/orders/1001` showing `internalNotes` and `paymentTokenLast4` in the response.
-- Expected screenshot file: `screenshots/before-api-data-exposure.png`.
+- Expected screenshot file: `screenshots/af004-before-api-response-evidence.png`.
 
 ### Fix Summary
 
@@ -86,13 +86,13 @@ curl -sS http://localhost:3000/api/orders/1001
 ### After Evidence Needed
 
 - Browser/API capture of `/api/orders/1001` showing minimized order data with no internal fields.
-- Expected screenshot file: `screenshots/after-api-data-exposure.png`.
+- Expected screenshot file: `screenshots/af004-after-api-response-evidence.png`.
 
 ### Evidence Status
 
 - Completed:
-	- `screenshots/before-api-data-exposure.png`
-	- `screenshots/after-api-data-exposure.png`
+	- `screenshots/af004-before-api-response-evidence.png`
+	- `screenshots/af004-after-api-response-evidence.png`
 
 ### Interview Explanation
 
