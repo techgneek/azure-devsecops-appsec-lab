@@ -28,17 +28,11 @@ router.get('/:id', (req, res) => {
     return res.status(404).json({ error: 'Order not found' });
   }
 
-  const safeOrderView = {
-    id: order.id,
-    customerName: order.customerName,
-    total: order.total,
-    items: order.items,
-  };
-
-  // Remediation: return only fields required by the client response contract.
+  // Training mode: intentionally return the full object to demonstrate
+  // excessive data exposure before remediation.
   res.json({
-    order: safeOrderView,
-    note: 'Response minimized to required fields for AppSec remediation validation.',
+    order,
+    note: 'This endpoint is intentionally vulnerable for training purposes only.',
   });
 });
 
