@@ -110,7 +110,7 @@ The app contains routes that demonstrate common application security concerns in
 | `/profile?id=2` | ![Profile endpoint response id=2](screenshots/profile-id-2-evidence.png) | Direct object reference returns a different profile without object-level authorization enforcement |
 | `/debug` | ![Debug endpoint response evidence](screenshots/debug-route-evidence.png) | Debug exposure and secret-handling risk |
 | `/api/orders/:id` | ![Orders API response evidence](screenshots/orders-route-evidence.png) | Excessive data exposure in API responses |
-| `/headers` | ![Header route response](screenshots/header-route.png) | Missing browser security headers |
+| `/headers` | ![Header route response evidence](screenshots/headers-route-evidence.png) | Missing browser security headers |
 
 The point is not to exploit anything. The point is to show how a security analyst can observe application behavior, identify risk patterns, collect evidence, and translate the issue into remediation guidance.
 
@@ -131,6 +131,12 @@ The point is not to exploit anything. The point is to show how a security analys
 - Before signal: the orders API response includes internal order attributes beyond what a consumer-facing client requires.
 - Risk meaning: this is an excessive data exposure pattern where unnecessary fields increase data leakage risk and downstream misuse potential.
 - Expected control outcome: return a minimized response contract that exposes only fields required by the use case.
+
+### Before Evidence: Missing Security Headers (`/headers`)
+
+- Before signal: browser-facing security headers are absent or incomplete in HTTP responses.
+- Risk meaning: this weakens baseline client-side protections and increases exposure to common browser-mediated attack classes.
+- Expected control outcome: enforce a hardened response header baseline (for example CSP, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, and Permissions-Policy).
 
 ---
 
