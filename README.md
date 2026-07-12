@@ -74,7 +74,7 @@ This project uses one repeatable lifecycle for handling application security fin
 
 | Deployment Evidence | Why It Matters |
 | --- | --- |
-| ![GitHub Actions deploy workflow](screenshots/deploy-workflow.png) | Shows deployment is handled through CI/CD instead of manual upload. |
+| ![GitHub Actions deploy workflow](screenshots/deploy-workflow-evidence.png) | Shows deployment is handled through CI/CD instead of manual upload. |
 
 Detailed setup commands and local run instructions are kept in `LAB-GUIDE.md` and `infra/README.md` so the main README stays focused on the end-to-end program flow.
 
