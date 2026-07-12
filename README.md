@@ -109,7 +109,7 @@ The app contains routes that demonstrate common application security concerns in
 | `/profile?id=1` | ![Profile endpoint response id=1](screenshots/profile-id-1-evidence.png) | Broken access control / IDOR-style behavior |
 | `/profile?id=2` | ![Profile endpoint response id=2](screenshots/profile-id-2-evidence.png) | Direct object reference returns a different profile without object-level authorization enforcement |
 | `/debug` | ![Debug endpoint response evidence](screenshots/debug-route-evidence.png) | Debug exposure and secret-handling risk |
-| `/api/orders/:id` | ![Orders API response](screenshots/orders-route.png) | Excessive data exposure in API responses |
+| `/api/orders/:id` | ![Orders API response evidence](screenshots/orders-route-evidence.png) | Excessive data exposure in API responses |
 | `/headers` | ![Header route response](screenshots/header-route.png) | Missing browser security headers |
 
 The point is not to exploit anything. The point is to show how a security analyst can observe application behavior, identify risk patterns, collect evidence, and translate the issue into remediation guidance.
@@ -125,6 +125,12 @@ The point is not to exploit anything. The point is to show how a security analys
 - Before signal: the debug route returns internal application/runtime details that are not required for normal user-facing behavior.
 - Risk meaning: this is an information disclosure pattern that improves attacker reconnaissance and reduces uncertainty for follow-on attacks.
 - Expected control outcome: disable debug endpoints in production paths and restrict internal diagnostics to authenticated/authorized administrative channels.
+
+### Before Evidence: API Data Exposure (`/api/orders/:id`)
+
+- Before signal: the orders API response includes internal order attributes beyond what a consumer-facing client requires.
+- Risk meaning: this is an excessive data exposure pattern where unnecessary fields increase data leakage risk and downstream misuse potential.
+- Expected control outcome: return a minimized response contract that exposes only fields required by the use case.
 
 ---
 
