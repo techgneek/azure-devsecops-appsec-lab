@@ -104,13 +104,13 @@ One thing I am still thinking through: what is the right balance between technic
 ```text
 A developer saying "it's fixed" is not the end of the story. It is the beginning of validation. ✅
 
-That is the part of remediation I care most about: not just making a change, but proving the risk actually changed. In practice, that means re-testing, checking the response, comparing the before and after, and keeping enough evidence to support closure.
+That is the part of remediation I care most about: not just making a change, but proving the risk actually changed. In practice, that means re-testing, checking the response, comparing the before and after, and keeping enough evidence to support closure. 🔍
 
-In AppSec, closure is not a feeling. It is evidence.
+In AppSec, closure is not a feeling. It is evidence. 🧾
 
 That can include before/after API output, test notes, ticket comments, and validation results. The point is to make the fix durable enough that someone else can understand what changed and why the issue is really closed.
 
-What do you require before you call a fix closed? What would you add to this workflow to make it stronger?
+What do you require before you call a fix closed? What would you add to this workflow to make it stronger? ✅
 ```
 
 **Short hook option:**
