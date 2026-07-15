@@ -1,4 +1,4 @@
-# Application Security Vulnerability Management Program Simulation
+# AppSec Vulnerability Management Program
 
 This project simulates the implementation of a lightweight Application Security vulnerability management workflow using Azure, Terraform, GitHub Actions, and common AppSec scanning tools.
 
