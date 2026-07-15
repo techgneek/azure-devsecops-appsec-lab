@@ -194,5 +194,3 @@ What do you require before you call a fix closed? What would you add to this wor
 - `screenshots/af004-remediation-tests-evidence.png`
 - `screenshots/af004-after-api-response-evidence.png`
 - `screenshots/af004-zap-validation-evidence.png`
-
-
