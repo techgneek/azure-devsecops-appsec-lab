@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="627" viewBox="0 0 1200 627">
+  <image href="backgrounds/post-03-remediation-proof-background.png" width="1200" height="627" preserveAspectRatio="xMidYMid slice"/>
+  <rect width="650" height="627" fill="url(#fade)"/>
+  <rect x="76" y="92" width="6" height="430" rx="3" fill="#ff5b45"/>
+  <text x="108" y="116" class="label">BEFORE  ->  FIX  ->  RE-TEST</text>
+  <text x="76" y="188" class="headline">FIXED</text><text x="76" y="274" class="headline">IS NOT ENOUGH</text>
+  <text x="108" y="545" class="footer">APPLICATION SECURITY  /  FIELD NOTES</text>
+  <defs>
+    <linearGradient id="fade" x1="0" x2="1">
+      <stop offset="0" stop-color="#020913" stop-opacity=".96"/>
+      <stop offset=".78" stop-color="#020913" stop-opacity=".22"/>
+      <stop offset="1" stop-color="#020913" stop-opacity="0"/>
+    </linearGradient>
+    <style>
+      .headline { font: 700 74px Arial, sans-serif; letter-spacing: 1px; fill: #f6fbff; }
+      .label { font: 700 18px Arial, sans-serif; letter-spacing: 4px; fill: #70e7ff; }
+      .footer { font: 700 14px Arial, sans-serif; letter-spacing: 3px; fill: #b6c9d3; }
+    </style>
+  </defs>
+</svg>
