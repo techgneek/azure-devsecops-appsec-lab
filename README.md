@@ -8,6 +8,18 @@ This project simulates the implementation of a lightweight Application Security 
 
 ---
 
+## Video Presentation
+
+This walkthrough explains the lab story from deployment to AppSec vulnerability management: Azure infrastructure, CI/CD security checks, finding triage, OWASP mapping, remediation ownership, and validation evidence.
+
+<a href="https://www.youtube.com/watch?v=fw18MEuLPNg">
+  <img width="1000" alt="Watch the AppSec Vulnerability Management Azure DevSecOps Lab presentation" src="screenshots/youtube-presentation-thumbnail.png">
+</a>
+
+[Watch the presentation on YouTube](https://www.youtube.com/watch?v=fw18MEuLPNg)
+
+---
+
 ## Architecture at a Glance
 
 <img width="1000" alt="Architecture at a glance" src="screenshots/architecture-thumbnail-v2.png">
@@ -33,6 +45,7 @@ This project simulates the implementation of a lightweight Application Security 
 
 ## Table of Contents
 
+- [Video Presentation](#video-presentation)
 - [AppSec Lifecycle](#appsec-lifecycle)
 - [Architecture at a Glance](#architecture-at-a-glance)
 - [Technology Stack](#technology-stack)
