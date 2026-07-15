@@ -33,7 +33,7 @@ FIVE ISSUES. ONE APP.
 ### Post Copy
 
 ```text
-Imagine launching one app and uncovering five security issues on day one.
+Imagine launching one app and uncovering five security issues on day one. 🚀
 
 That was the pressure I wanted this controlled lab to simulate.
 
@@ -110,7 +110,7 @@ A FINDING IS NOT A FIX
 ### Post Copy
 
 ```text
-A scanner result is useful.
+A scanner result is useful. 🔎
 
 A finding without ownership is just noise.
 
@@ -173,7 +173,7 @@ FIXED IS NOT ENOUGH
 ### Post Copy
 
 ```text
-A developer saying “it’s fixed” is not the end of the story.
+A developer saying “it’s fixed” is not the end of the story. ✅
 
 It’s the beginning of validation. 🔎
 
