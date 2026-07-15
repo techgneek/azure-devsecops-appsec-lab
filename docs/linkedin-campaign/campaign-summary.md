@@ -173,19 +173,19 @@ FIXED IS NOT ENOUGH
 ### Post Copy
 
 ```text
-A developer saying “it’s fixed” is not the end of the story.
+A developer saying “it’s fixed” is not the end of the story. ✨
 
 It’s the beginning of validation.
 
 This is the part I think more teams should talk about.
 
-In the lab, AF-004 was remediated by minimizing the API response so only business-required fields remained.
+In the lab, AF-004 was remediated by minimizing the API response so only business-required fields remained. 🔍
 
 The internal-only fields were removed, and the code was backed by automated tests that check the response shape.
 
 That matters because security work is not complete when the code changes.
 
-It is complete when the risk has been independently re-tested and the evidence supports closure.
+It is complete when the risk has been independently re-tested and the evidence supports closure. 🧾
 
 The workflow here was straightforward:
 
@@ -208,7 +208,7 @@ That is the bridge between vulnerability management and AppSec: not just finding
 
 And honestly, that is the standard I want to keep raising for myself.
 
-What do you require before you call a fix closed? What would you add to this workflow to make it stronger?
+What do you require before you call a fix closed? What would you add to this workflow to make it stronger? ✅
 ```
 
 ### Technical Evidence Used
