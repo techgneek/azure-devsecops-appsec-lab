@@ -35,6 +35,8 @@ FIVE ISSUES. ONE APP.
 ```text
 Imagine launching one app and uncovering five security issues on day one. 🚀
 
+This is Part 1 of a 3-part video series walking through my Azure DevSecOps AppSec lab.
+
 That was the pressure I wanted this controlled lab to simulate.
 
 Because the real story was never just “I deployed an app.”
@@ -75,6 +77,9 @@ The lesson is that vulnerability management discipline translates cleanly into A
 ✅ Remediate it
 ✅ Prove it is closed
 
+If you want to skip ahead and see the full investigation, repo, and video presentation, I documented it here:
+https://github.com/techgneek/azure-devsecops-appsec-lab/blob/main/README.md
+
 If you were building this lab, what would you add first to make the workflow feel more realistic?
 ```
 
@@ -114,6 +119,8 @@ A scanner result is useful. 🔎
 
 A finding without ownership is just noise.
 
+This is Part 2 of a 3-part video series walking through my Azure DevSecOps AppSec lab.
+
 This is where the story gets more interesting.
 
 One of the strongest findings in the lab is AF-004 on `GET /api/orders/:id`. The route exposed more data than the client needed, including internal-only fields like `internalNotes` and `paymentTokenLast4`.
@@ -144,6 +151,9 @@ AF-004 was:
 That is the real lesson.
 
 The finding itself is not the finish line. The valuable work is turning the signal into understandable, owned remediation work that somebody can close with proof.
+
+If you want to skip ahead and see the full investigation, repo, and video presentation, I documented it here:
+https://github.com/techgneek/azure-devsecops-appsec-lab/blob/main/README.md
 
 If you triage findings today, what do you need before you consider them real work instead of scanner noise?
 ```
@@ -177,6 +187,8 @@ A developer saying “it’s fixed” is not the end of the story. ✅
 
 It’s the beginning of validation. 🔎
 
+This is Part 3 of a 3-part video series walking through my Azure DevSecOps AppSec lab.
+
 This is the part I think more teams should talk about.
 
 In the lab, AF-004 was remediated by minimizing the API response so only business-required fields remained.
@@ -207,6 +219,9 @@ The before/after evidence makes the difference visible.
 That is the bridge between vulnerability management and AppSec: not just finding issues, but proving they are actually gone.
 
 And honestly, that is the standard I want to keep raising for myself.
+
+If you want to see the full investigation, repo, and video presentation, I documented it here:
+https://github.com/techgneek/azure-devsecops-appsec-lab/blob/main/README.md
 
 What do you require before you call a fix closed? What would you add to this workflow to make it stronger?
 ```

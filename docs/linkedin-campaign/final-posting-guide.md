@@ -6,6 +6,8 @@ This campaign should read like a story-first AppSec case study.
 
 The primary audience is security practitioners, leaders, and up-and-coming professionals who want to see how AppSec work can be structured. Recruiter discovery is a secondary benefit, not the center of the campaign.
 
+Each post should also function as one part of a three-part native LinkedIn video series. Keep the story hook first, then orient the viewer with a short "Part X of 3" line.
+
 The through-line:
 
 ```text
@@ -27,6 +29,8 @@ These windows are a practical starting point. If one post performs especially we
 
 **Title:** From Deployment to a Real AppSec Program
 
+**Video series label:** `Part 1 of 3`
+
 **Thumbnail headline:** `FIVE ISSUES. ONE APP.`
 
 **Image:** [post-01-appsec-program.png](thumbnails/post-01-appsec-program.png)
@@ -36,11 +40,16 @@ These windows are a practical starting point. If one post performs especially we
 ```text
 I did not just deploy an app. I built a repeatable AppSec workflow around it.
 
+This is Part 1 of a 3-part video series walking through my Azure DevSecOps AppSec lab.
+
 On day one, that meant more than spinning up a demo and calling it done. It meant putting Azure, Terraform, GitHub Actions, layered scanning, and security validation into the same story so the lab reflects how real AppSec programs actually work. 🔐
 
 The goal was not to make a toy project. The goal was to show how a team can move from deployment to ownership, from findings to evidence, and from “we found something” to “we can prove what happened.”
 
 That is the part I think gets lost most often: the app is only the starting point. The real work is building a process around it that makes findings understandable, actionable, and repeatable.
+
+If you want to skip ahead and see the full investigation, repo, and video presentation, I documented it here:
+https://github.com/techgneek/azure-devsecops-appsec-lab/blob/main/README.md
 
 If you were building this lab, what would you add first to make the workflow feel more realistic?
 ```
@@ -61,6 +70,8 @@ For anyone building AppSec or vulnerability management labs: I am curious what y
 
 **Title:** A Finding Is Not Yet Remediation Work
 
+**Video series label:** `Part 2 of 3`
+
 **Thumbnail headline:** `A FINDING IS NOT A FIX`
 
 **Image:** [post-02-finding-to-owner.png](thumbnails/post-02-finding-to-owner.png)
@@ -70,11 +81,16 @@ For anyone building AppSec or vulnerability management labs: I am curious what y
 ```text
 A scanner result is useful. A finding without ownership is just noise. 🧭
 
+This is Part 2 of a 3-part video series walking through my Azure DevSecOps AppSec lab.
+
 That is why I like treating security findings as workflow problems, not just technical alerts. Once a finding is validated, it needs context: what the issue is, why it matters, how it maps to OWASP, who owns it, and what proof will count as closure.
 
 In this lab, the difference between “we found something” and “we can act on it” matters just as much as the bug itself. AF-004 is not valuable because it exists in a report. It is valuable because it can be explained clearly, prioritized responsibly, and handed off in a way that supports real remediation.
 
 That handoff is where a lot of programs get stuck. The issue is not discovery. The issue is turning discovery into accountable work.
+
+If you want to skip ahead and see the full investigation, repo, and video presentation, I documented it here:
+https://github.com/techgneek/azure-devsecops-appsec-lab/blob/main/README.md
 
 If you triage findings today, what do you need before you consider them real work instead of scanner noise?
 ```
@@ -95,6 +111,8 @@ One thing I am still thinking through: what is the right balance between technic
 
 **Title:** Why "Fixed" Still Needs Proof
 
+**Video series label:** `Part 3 of 3`
+
 **Thumbnail headline:** `FIXED IS NOT ENOUGH`
 
 **Image:** [post-03-remediation-proof.png](thumbnails/post-03-remediation-proof.png)
@@ -104,11 +122,16 @@ One thing I am still thinking through: what is the right balance between technic
 ```text
 A developer saying "it's fixed" is not the end of the story. It is the beginning of validation. ✅
 
+This is Part 3 of a 3-part video series walking through my Azure DevSecOps AppSec lab.
+
 That is the part of remediation I care most about: not just making a change, but proving the risk actually changed. In practice, that means re-testing, checking the response, comparing the before and after, and keeping enough evidence to support closure. 🔍
 
 In AppSec, closure is not a feeling. It is evidence. 🧾
 
 That can include before/after API output, test notes, ticket comments, and validation results. The point is to make the fix durable enough that someone else can understand what changed and why the issue is really closed.
+
+If you want to see the full investigation, repo, and video presentation, I documented it here:
+https://github.com/techgneek/azure-devsecops-appsec-lab/blob/main/README.md
 
 What do you require before you call a fix closed? What would you add to this workflow to make it stronger? ✅
 ```
@@ -129,6 +152,8 @@ This is the part I want to keep improving: stronger closure evidence. Before/aft
 
 - Confirm the image matches the post before publishing.
 - Confirm the repository link is present and correct.
+- Confirm the right native video clip is attached: Part 1, Part 2, or Part 3.
+- Confirm the post includes the correct "Part X of 3" line.
 - Keep the post voice curious and story-led.
 - Avoid framing the post as a job search post.
 - Publish the first comment within 2 to 5 minutes after the post goes live.
