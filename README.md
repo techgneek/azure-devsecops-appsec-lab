@@ -56,7 +56,7 @@ This walkthrough explains the lab story from deployment to AppSec vulnerability 
 - [Remediation and Validation Proof](#remediation-and-validation-proof)
 - [Secure SDLC Alignment](#secure-sdlc-alignment)
 - [Program Outcome](#program-outcome)
-- [Supporting Documentation](#supporting-documentation)
+- [AppSec and Vulnerability Management](#appsec-and-vulnerability-management)
 - [What I Would Improve Next](#what-i-would-improve-next)
 
 ---
@@ -275,10 +275,11 @@ The strongest takeaway is that AppSec is not disconnected from vulnerability man
 
 As a final summary, this project demonstrates an end-to-end AppSec vulnerability management workflow in a controlled Azure lab. It combines infrastructure provisioning, CI/CD-integrated scanning, OWASP-based categorization, remediation ownership, and evidence-based validation to show how findings move from detection to closure.
 
-## Supporting Documentation
+## AppSec and Vulnerability Management
 
-Use the files below for setup details, report depth, and remediation evidence:
+Use the links below for the lab repository, setup details, report depth, and remediation evidence:
 
+- [GitHub repository](https://github.com/techgneek/azure-devsecops-appsec-lab)
 - `LAB-GUIDE.md`
 - `SECURITY.md`
 - `infra/README.md`
