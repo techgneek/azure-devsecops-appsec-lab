@@ -46,10 +46,27 @@ jobs:
 
           echo "TARGET_URL=$TARGET_URL" >> "$GITHUB_ENV"
 
+      - name: Prepare ZAP work directory
+        run: |
+          ZAP_WORK_DIR="$RUNNER_TEMP/zap-work"
+          mkdir -p "$ZAP_WORK_DIR"
+          chmod 777 "$ZAP_WORK_DIR"
+          echo "ZAP_WORK_DIR=$ZAP_WORK_DIR" >> "$GITHUB_ENV"
+
+      - name: Warm target application
+        run: |
+          TARGET_HEALTH_URL="${TARGET_URL%/}/health"
+          curl --fail --silent --show-error --location \
+            --retry 5 \
+            --retry-all-errors \
+            --retry-delay 10 \
+            --max-time 60 \
+            "$TARGET_HEALTH_URL" > /dev/null
+
       - name: Run ZAP baseline scan
         run: |
           docker run --rm \
-            -v "${{ github.workspace }}:/zap/wrk/:rw" \
+            -v "$ZAP_WORK_DIR:/zap/wrk/:rw" \
             ghcr.io/zaproxy/zaproxy:stable \
             zap-baseline.py \
             -t "$TARGET_URL" \
@@ -62,5 +79,5 @@ jobs:
         with:
           name: zap-baseline-report
           path: |
-            zap-baseline-report.html
-            zap-baseline-report.json
+            ${{ env.ZAP_WORK_DIR }}/zap-baseline-report.html
+            ${{ env.ZAP_WORK_DIR }}/zap-baseline-report.json
